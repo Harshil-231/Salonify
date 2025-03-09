@@ -15,7 +15,7 @@ export const SalonDashboard = () => {
     return (
         <div className="dashboard-container">
             {/* Navbar */}
-            <nav className="navbar">
+            <nav className="salondashboard-navbar">
                 <button className="menu-btn" onClick={toggleSidebar}>
                     <FaBars />
                 </button>
@@ -68,10 +68,10 @@ export const SalonDashboard = () => {
             {/* Main Content */}
             <main className="dashboard-content">
                 <div className="stats-cards">
-                    <div className="card">💇‍♂️ 150 New Bookings</div>
-                    <div className="card">📊 53% Increase</div>
-                    <div className="card">🛎️ 44 Active Users</div>
-                    <div className="card">🧾 65 Payments Completed</div>
+                    <div className="salondashboard-card">💇‍♂️ 150 New Bookings</div>
+                    <div className="salondashboard-card">📊 53% Increase</div>
+                    <div className="salondashboard-card">🛎️ 44 Active Users</div>
+                    <div className="salondashboard-card">🧾 65 Payments Completed</div>
                 </div>
 
                 {/* Graph Placeholder */}

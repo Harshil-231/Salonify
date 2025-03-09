@@ -18,7 +18,10 @@
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
+    transform: scale(1.04);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+
 }
 
 .feature-icon {

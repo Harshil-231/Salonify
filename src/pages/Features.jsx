@@ -1,11 +1,17 @@
-import React from 'react'
-import '../Styles/Features.css'
+import React from 'react';
+import '../Styles/Features.css';
 import { Navbar } from '../Components/Common/Navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faReceipt, faCalendarAlt, faFolder, faCreditCard,
+    faChartBar, faBell, faShoppingBag, faCogs, faGift,
+    faCheck
+} from '@fortawesome/free-solid-svg-icons';
 
 export const Features = () => {
     const featuresData = [
         {
-            icon: "🧾 ",
+            icon: faReceipt,
             title: "Billing",
             points: [
                 "Sell Services, Products, Packages & Memberships",
@@ -17,7 +23,7 @@ export const Features = () => {
             ],
         },
         {
-            icon: "📅",
+            icon: faCalendarAlt,
             title: "Appointments",
             points: [
                 "Powerful calendar interface to create appointments",
@@ -29,7 +35,7 @@ export const Features = () => {
             ],
         },
         {
-            icon: "📂",
+            icon: faFolder,
             title: "Customer Profile",
             points: [
                 "360° Customer profile",
@@ -41,7 +47,7 @@ export const Features = () => {
             ],
         },
         {
-            icon: "💳",
+            icon: faCreditCard,
             title: "Payments",
             points: [
                 "Secure online payments",
@@ -50,7 +56,7 @@ export const Features = () => {
             ],
         },
         {
-            icon: "📊",
+            icon: faChartBar,
             title: "Analytics",
             points: [
                 "Detailed revenue reports",
@@ -59,7 +65,7 @@ export const Features = () => {
             ],
         },
         {
-            icon: "🔔",
+            icon: faBell,
             title: "Notifications",
             points: [
                 "Automated SMS & Email reminders",
@@ -68,7 +74,7 @@ export const Features = () => {
             ],
         },
         {
-            icon: "🛍️",
+            icon: faShoppingBag,
             title: "E-Commerce",
             points: [
                 "Sell beauty products online",
@@ -77,7 +83,7 @@ export const Features = () => {
             ],
         },
         {
-            icon: "⚙️",
+            icon: faCogs,
             title: "Settings",
             points: [
                 "Customizable salon settings",
@@ -86,7 +92,7 @@ export const Features = () => {
             ],
         },
         {
-            icon: "🎁",
+            icon: faGift,
             title: "Loyalty & Rewards",
             points: [
                 "Offer discounts & coupons",
@@ -102,12 +108,17 @@ export const Features = () => {
             <section className="features-section">
                 {featuresData.map((feature, index) => (
                     <div className="feature-card" key={index}>
-                        <span className="feature-icon">{feature.icon}</span>
+                        <span className="feature-icon">
+                            <FontAwesomeIcon icon={feature.icon} />
+                        </span>
                         <h3>{feature.title}</h3>
                         <hr />
                         <ul>
                             {feature.points.map((point, i) => (
-                                <li key={i}>✅ {point}</li>
+                                <li key={i}>
+                                    <FontAwesomeIcon icon={faCheck} style={{ color: index % 2 === 0 ? 'orange' : 'yellow' }} />
+                                    {point}
+                                </li>
                             ))}
                         </ul>
                     </div>
@@ -116,4 +127,3 @@ export const Features = () => {
         </>
     );
 };
-

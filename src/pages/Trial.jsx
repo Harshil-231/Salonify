@@ -36,9 +36,9 @@ export const Trial = () => {
     };
 
     return (
-        <div style={{ textAlign: "center", background: "white", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+        <div style={{ textAlign: "center", background: "blue", minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
             <h1>Trial Sample</h1>
-            <form onSubmit={handleSubmit(submitHandler)} style={{ width: "50%", padding: "20px", boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)", background: "#f9f9f9", borderRadius: "10px" }}>
+            <form onSubmit={handleSubmit(submitHandler)} style={{ width: "50%", padding: "20px", boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)", background: "red", borderRadius: "10px" }}>
                 {[
                     { label: "Trial Dropdown", name: "hoardingDimension", type: "text" },
                     { label: "Latitude", name: "latitude", type: "text" },

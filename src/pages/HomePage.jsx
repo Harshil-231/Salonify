@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { Navbar } from '../Components/Common/Navbar';
-import { Footer } from '../Components/Common/Footer'
+import { Footer } from '../Components/Common/Footer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import '../Styles/homepage.css';
 
 export const HomePage = (w) => {
-
     return (
         <>
             <Navbar />
@@ -18,8 +19,6 @@ export const HomePage = (w) => {
                             <p>Join over 2000 brands who use Salonify to improve their customer retention and increase their profits
                             </p>
                         </div>
-
-
                     </div>
                 </section>
 
@@ -29,15 +28,15 @@ export const HomePage = (w) => {
                     <div className="card-layout">
                         <div className="card">
                             <img src="/images/stats1.png" alt="Feature 1" />
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <div className="card-text">Lorem ipsum dolor sit amet.</div>
                         </div>
                         <div className="card">
                             <img src="/images/stats2.png" alt="Feature 2" />
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <div className="card-text">Lorem ipsum dolor sit amet.</div>
                         </div>
                         <div className="card">
                             <img src="/images/stats3.png" alt="Feature 3" />
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <div className="card-text">Lorem ipsum dolor sit amet.</div>
                         </div>
                     </div>
                 </section>
@@ -74,7 +73,7 @@ export const HomePage = (w) => {
                 <section className="trial-section">
                     <h2>Start Your 7-Day Trial Today. No Credit Card Needed!</h2>
                     <Link to="/signup">
-                        <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+                        <button>
                             Sign Up
                         </button>
                     </Link>
@@ -82,8 +81,9 @@ export const HomePage = (w) => {
 
                 {/* Contact Section */}
                 <section className="contact">
-                    <p><span role="img" aria-label="phone">📞</span> 8238506893 |
-                        <span role="img" aria-label="email">📧</span> harshilpanchal1523@gmail.com
+                    <p>
+                        <FontAwesomeIcon icon={faPhone} /> 8238506893 | 
+                        <FontAwesomeIcon icon={faEnvelope} /> harshilpanchal1523@gmail.com
                     </p>
                 </section>
             </div>
