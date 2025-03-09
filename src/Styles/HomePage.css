@@ -1,0 +1,224 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #007404;
+    text-align: center;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.hero .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.hero .overlay .test {
+    text-align: center;
+    margin: 50px;
+    max-width: 500px;
+    position: relative;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px 30px;
+    border-radius: 10px;
+}
+
+.hero .overlay .test h1 {
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+
+.hero .overlay .test P {
+    font-weight: lighter;
+    font-size: 1rem;
+}
+
+/* Why Choose Section */
+.why-choose {
+    text-align: center;
+    margin: 60px 40px;
+}
+
+.why-choose h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0 0 30px;
+}
+
+.card-layout {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    text-align: center;
+    padding: 15px;
+    background: #ffffff;
+    color: #007404;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* Tailored Box Section */
+.tailored-box {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    border-radius: 10px;
+}
+
+.tailored-box h3 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Client and Review Slider */
+.slider-section {
+    margin: 50px 100px;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+
+}
+
+.slider-section h2 {
+    font-weight: bold;
+    padding: 30px 0px 30px;
+}
+
+.slider {
+    display: block;
+    width: 100%;
+    overflow: scroll;
+    white-space: nowrap;
+    position: relative;
+    animation: slide 9s linear infinite;
+}
+
+.slider img {
+    height:200px;
+    width: 300px;
+    margin: 10px;
+    display: inline-block;
+}
+
+/* @keyframes slide {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-200%);
+    }
+} */
+
+/* Trial Section */
+.trial-section {
+    padding: 30px 15px;
+    justify-content: center;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    font-size: 2rem;
+    margin: 50px 0px;
+}
+
+.trial-section button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background: #50C878;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Contact Section */
+.contact {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 40px 0;
+}
+
+.contact p {
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .hero .overlay h1 {
+        font-size: 2.5rem;
+    }
+
+    .slider img {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero .overlay h1 {
+        font-size: 2rem;
+    }
+
+    .card {
+        width: 80%;
+    }
+
+    .slider img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero .overlay h1 {
+        font-size: 1.5rem;
+    }
+
+    .why-choose,
+    .slider-section,
+    .tailored-box {
+        margin: 30px 20px;
+    }
+
+    .contact p {
+        font-size: 1rem;
+    }
+}

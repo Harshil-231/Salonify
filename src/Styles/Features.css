@@ -1,0 +1,68 @@
+.features-section {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    /* 3-3 layout by default */
+    gap: 20px;
+    margin-top: 70px;
+    padding: 20px 100px;
+    /* Ensures 100px space on both sides */
+    justify-content: center;
+}
+
+.feature-card {
+    padding: 20px;
+    text-align: left;
+    border: none;
+    transition: transform 0.3s ease-in-out;
+    /* ❌ No border at all */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+ h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+hr {
+    text-align: left;
+    width: 15%;
+    margin: 1px;
+    border: 2px solid #3fc04a;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+/* Medium screens: Show 2 cards per row */
+@media (max-width: 1024px) {
+    .features-section {
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+        padding: 20px 80px;
+        /* Slightly reduced side padding */
+    }
+}
+
+/* Small screens: Show 1 card per row */
+@media (max-width: 768px) {
+    .features-section {
+        grid-template-columns: repeat(1, minmax(250px, 1fr));
+        padding: 20px 40px;
+        /* Further reduced side padding */
+    }
+}

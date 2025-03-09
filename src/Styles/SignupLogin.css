@@ -1,0 +1,103 @@
+/* Container */
+.signup-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+/* Left Side */
+.left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Option Cards */
+/* Remove default link styles */
+.option-card {
+    text-decoration: none;
+    color: inherit;  /* Use the parent’s text color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option-card:hover {
+    text-decoration: none;
+    color: inherit;
+    background-color: #f7f7f7;
+}
+
+/* fixed link default css  */
+.option-card {
+    text-decoration: none;
+    color: inherit;
+}
+
+.text strong {
+    font-size: 16px;
+}
+
+.text p {
+    font-size: 14px;
+    color: gray;
+}
+
+.arrow {
+    font-size: 20px;
+}
+
+
+/* Right Side (Image) */
+.right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .right {
+        display: none;
+        /* Hide image on small screens */
+    }
+
+    .left {
+        width: 100%;
+        padding: 20px;
+    }
+}
