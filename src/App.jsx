@@ -20,7 +20,7 @@ import { Trial } from './pages/trial';
 
 const GOOGLE_CLIENT_ID = "616976635256-6dbof6or41jhmvp75blc9cgbv4okdidn.apps.googleusercontent.com"; // Replace with your actual client ID
 
-// const theme = createTheme();
+// const theme = createTheme(); 
 
 
 function App() {
