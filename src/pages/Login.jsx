@@ -33,10 +33,10 @@ export const Login = () => {
 
     const submitHandler = async (data) => {
         try {
-            const res = await axios.post("/login", data);
+            const res = await axios.post("login", data);
             if (res.status === 200) {
                 notify("Login successful!");
-                setTimeout(() => navigate("/user-dashboard"), 2000);
+                setTimeout(() => navigate("/user"), 2000);
             } else {
                 notify("Invalid credentials", "error");
             }

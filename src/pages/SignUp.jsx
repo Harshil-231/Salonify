@@ -52,7 +52,7 @@ export const SignUp = () => {
             const res = await axios.post("/user", data);
             if (res.status === 201) {
                 notify("User registered successfully!");
-                setTimeout(() => navigate("/user-dashboard"), 2000);
+                setTimeout(() => navigate("/user"), 2000);
             } else {
                 notify("Failed to register user", "error");
             }

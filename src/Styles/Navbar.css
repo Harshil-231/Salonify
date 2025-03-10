@@ -81,7 +81,7 @@
 
 
 /* Responsive */
-@media (max-width: 999px) {
+@media (max-width: 1019px) {
     .menu-container {
         position: relative;
         display: inline-block;

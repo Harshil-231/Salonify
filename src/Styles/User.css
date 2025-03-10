@@ -1,0 +1,87 @@
+/* User Dashboard Styling */
+.ud-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 10%;
+    min-height: 100vh;
+    width: 100%;
+  }
+  
+  /* Welcome Card (Full Width) */
+  .ud-welcome-card {
+    background-color: #ffebd2;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  /* Dashboard Grid */
+  .ud-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+  }
+  
+  /* Dashboard Cards */
+  .ud-dashboard-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Card Header */
+  .ud-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #444;
+  }
+  
+  .ud-card-header svg {
+    color: #ff8c42;
+  }
+  
+  /* Action Buttons */
+  .ud-action-btn {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #6a5acd;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+  }
+  
+  .ud-action-btn:hover {
+    background-color: #5b4ec7;
+  }
+  
+  /* Loyalty Points */
+  .ud-points {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff8c42;
+  }
+  
+  .ud-reward-text {
+    font-size: 14px;
+    color: #666;
+  }
+  
