@@ -31,7 +31,7 @@ export const Trial = () => {
     const submitHandler = async (data) => {
         const userId = localStorage.getItem("id");
         data.userId = userId;
-        const res = await axios.post("/trial/add", data);
+        const res = await axios.post("/user", data);
         console.log(res.data);
     };
 

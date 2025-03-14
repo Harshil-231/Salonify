@@ -1,21 +1,30 @@
 import './Styles/app.css';
 import './Styles/salon.css';
-import { Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 // import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { GoogleOAuthProvider } from '@react-oauth/google'; // Google OAuth Provider
 import axios from "axios"
+
 import { HomePage } from './pages/HomePage';
 import { Blog } from './pages/Blog';
 import { Features } from './pages/Features';
 import { Login } from './pages/Login';
 import { Pricing } from './pages/Pricing';
 import { SignUp } from './pages/SignUp';
+import { PrivateRoute } from './Components/PrivateRoute';
+
 import { AdminDashboard } from './pages/admin/AdminDashboard';
+
 import { UserDashboard } from './pages/user/UserDashboard';
+import { UserProfile } from './pages/user/UserProfile';
+import { UserProfileEdit } from './pages/user/UserProfileEdit';
+
 import { SalonDashboard } from './pages/salon/SalonDashboard';
 import { SalonProfile } from './pages/salon/SalonProfile';
-import { UserProfile } from './pages/user/UserProfile';
+
 import { Trial } from './pages/Trial';
+// import { Loader } from './Components/Common/Loader';
+
 // import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const GOOGLE_CLIENT_ID = "616976635256-6dbof6or41jhmvp75blc9cgbv4okdidn.apps.googleusercontent.com"; // Replace with your actual client ID
@@ -31,27 +40,47 @@ function App() {
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
 
       <Routes>
+
         <Route path="/" element={<HomePage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/features" element={<Features />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+
+        {/* Admin Routes (Full Access) */}
+        <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/user" element={<UserDashboard />} />
+        </Route>
+
+        {/* User-Only Routes */}
+        <Route element={<PrivateRoute allowedRoles={["user"]} />}>
+        <Route path="" element={<PrivateRoute />}/>
+        <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/user-profile/edit" element={<UserProfileEdit />} />
+        </Route>
+
+        {/* Salon Owner Routes */}
+        <Route element={<PrivateRoute allowedRoles={["salon owner"]} />}>
         <Route path="/salon" element={<SalonDashboard />} />
         <Route path="/salon-profile" element={<SalonProfile />} />
-        <Route path="/user-profile" element={<UserProfile />} />
-        {/* <Route path="/user-dashboard" element={<UserDashboard />} /> */}
         <Route path="/salon-dashboard" element={<SalonDashboard />} />
+        </Route>
+
+
+
         <Route path="/trial" element={<Trial />} />
-
-
+        {/* <Route path="/loader" element={<Loader />} /> */}
 
       </Routes>
+
+
+
     </GoogleOAuthProvider>
   );
 }
 
 export default App;
-// hi there its a trail
+
+

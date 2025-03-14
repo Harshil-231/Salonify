@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
+// import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import '../Styles/LoginSignUp.css';
+import { Loader } from "../Components/Common/Loader.jsx";
 
 export const Login = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 1000); // Simulate API call
+    }, []);
 
     const [inputState, setInputState] = useState({
         email: { focused: false, hasValue: false },
@@ -33,10 +39,21 @@ export const Login = () => {
 
     const submitHandler = async (data) => {
         try {
-            const res = await axios.post("login", data);
+            const res = await axios.post("http://localhost:3200/login", data);
             if (res.status === 200) {
                 notify("Login successful!");
-                setTimeout(() => navigate("/user"), 2000);
+
+                localStorage.setItem("id", res.data.data._id);
+                localStorage.setItem("role", res.data.data.roleId.name);
+
+                if (res.data.data.roleId.name === "USER") {
+                    navigate("/user-dashboard");
+                } else if (res.data.data.roleId.name === "Admin") {
+                    navigate("/");
+                } else if (res.data.data.roleId.name === "Salon Owner") {
+                    navigate("/salon-dashboard");
+                }
+
             } else {
                 notify("Invalid credentials", "error");
             }
@@ -46,17 +63,19 @@ export const Login = () => {
         }
     };
 
-    const handleGoogleSuccess = (credentialResponse) => {
-        console.log("Google User:", credentialResponse);
-        // Send token to backend for authentication if required
-    };
+    // const handleGoogleSuccess = (credentialResponse) => {
+    //     console.log("Google User:", credentialResponse);
+    //     // Send token to backend for authentication if required
+    // };
 
-    const handleGoogleFailure = () => {
-        notify("Google Sign-In Failed", "error");
-    };
+    // const handleGoogleFailure = () => {
+    //     notify("Google Sign-In Failed", "error");
+    // };
 
     return (
+
         <div className="login-container">
+            {loading && <Loader />}
             <ToastContainer position="top-center" autoClose={2000} theme="dark" transition={Bounce} />
             <h2 className="login-title">Login</h2>
 
@@ -90,13 +109,14 @@ export const Login = () => {
                 <button type="submit" className="submit-btn">Login</button>
             </form>
 
-            <div className="google-login">
+            {/* <div className="google-login">
                 <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleFailure} />
-            </div>
+            </div> */}
 
             <p className="signup-redirect">
                 Don't have an account? <Link to="/signup">Sign Up</Link>
             </p>
         </div>
+
     );
 };

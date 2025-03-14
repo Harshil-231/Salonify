@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
+// import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { Bounce, toast, ToastContainer } from "react-toastify";
-// import jwtDecode from "jwt-decode"; // Ensure you have this installed
+import { Loader } from "../Components/Common/Loader.jsx";
+
+// import jwtDecode from "jwt-decode"; // Ensure you have this installed (currently not )
+
+
 import '../Styles/LoginSignUp.css'
 export const SignUp = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
-
-
+    const [loading, setLoading] = useState(true);
 
     // Unified state management for input focus and value tracking
     const [inputState, setInputState] = useState({
@@ -18,7 +21,7 @@ export const SignUp = () => {
         lastName: { focused: false, hasValue: false },
         email: { focused: false, hasValue: false },
         password: { focused: false, hasValue: false },
-        // contact: { focused: false, hasValue: false },
+        // contact: { focused: false, hasValue: false }, 
     });
 
     // Function to handle focus and blur events
@@ -52,7 +55,7 @@ export const SignUp = () => {
             const res = await axios.post("/user", data);
             if (res.status === 201) {
                 notify("User registered successfully!");
-                setTimeout(() => navigate("/user"), 2000);
+                setTimeout(() => navigate("/user-dashboard"), 2000);
             } else {
                 notify("Failed to register user", "error");
             }
@@ -62,23 +65,31 @@ export const SignUp = () => {
         }
     };
 
-    // Google Login Handlers
-    const handleGoogleSuccess = (credentialResponse) => {
-        const decoded = jwtDecode(credentialResponse.credential);
-        console.log("Google User:", decoded);
-        // Send the token to backend for authentication if required
-    };
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 1000); // Simulate API call
+    }, []);
 
+
+    // Google Login Handlers
+    // const handleGoogleSuccess = (credentialResponse) => {
+    // const decoded = jwtDecode(credentialResponse.credential);
+    // console.log("Google User:", credentialResponse);
+    // Send the token to backend for authentication if required
+    // };
     const handleGoogleFailure = () => {
         notify("Google Sign-In Failed", "error");
     };
 
     return (
         <div className="signup-container">
+
+            {loading && <Loader />}
+
             <ToastContainer position="top-center" autoClose={2000} theme="dark" transition={Bounce} />
             <h2 className="signup-title">Sign Up</h2>
 
             <form onSubmit={handleSubmit(submitHandler)} className="signup-form">
+
                 {["firstName", "lastName", "email", "password", /*"contact"*/].map((field) => (
                     <div key={field} className="input-group">
                         <label
@@ -113,7 +124,7 @@ export const SignUp = () => {
                 ))}
                 <div className="input-group">
                     <label className="floating-label">Select Role</label>
-                    <select  className="input-field"{...register("roleId")}>
+                    <select className="input-field"{...register("roleId")}>
                         <option className="option-dropdown-field">SELECT ROLE</option>
                         {roles?.map((role) => (
                             <option key={role._id} value={role._id} className="option-dropdown-field">{role.name}</option>
@@ -125,7 +136,7 @@ export const SignUp = () => {
             </form>
 
             <div className="google-login">
-                <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleFailure} />
+                {/* <GoogleLogin onSuccess={handleGoogleSuccess} onError={handleGoogleFailure} /> */}
             </div>
 
             <p className="login-redirect">

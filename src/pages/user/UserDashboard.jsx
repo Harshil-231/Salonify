@@ -1,142 +1,91 @@
-import React, { useState } from "react";
-import "../../styles/user.css"; // Using normal CSS instead of Tailwind
-import { faCalendar, faClock, faStar, faWallet, faHeart, faCog } from "@fortawesome/free-solid-svg-icons";
-import { FaBars, FaChevronDown, FaChartPie, FaUser, FaCog, FaSignOutAlt } from "react-icons/fa";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faCalendarAlt, faHeart, faStar, faBell, faSearch, faQuestionCircle, faUserCircle, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import '../../styles/User.css';
 
 export const UserDashboard = () => {
-    const [user] = useState({
-        name: "Hp",
-        points: 200,
-        nextReward: "₹100 off",
-        upcomingAppointment: {
-            salon: "Luxe Salon",
-            service: "Haircut & Styling",
-            date: "March 15, 2025",
-            time: "3:00 PM",
-        },
-    });
+  const [activeSection, setActiveSection] = useState('appointments');
+  const [userName, setUserName] = useState('Client Name');
+  const [userEmail, setUserEmail] = useState('client@example.com');
+  const [notificationCount, setNotificationCount] = useState(5);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showProfileEdit, setShowProfileEdit] = useState(false);
+  const [showReviewForm, setShowReviewForm] = useState(false);
 
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [dropdownOpen, setDropdownOpen] = useState({});
+  const handleNavigation = (section) => {
+    setActiveSection(section);
+  };
 
-    const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const closeModal = () => {
+    setShowProfileEdit(false);
+    setShowReviewForm(false);
+  };
 
-    const toggleDropdown = (menu) => {
-        setDropdownOpen((prev) => ({ ...prev, [menu]: !prev[menu] }));
-    };
+  const openProfileEdit = () => {
+    setShowProfileEdit(true);
+  };
 
+  const handleProfileUpdate = (newName, newEmail) => {
+    setUserName(newName);
+    setUserEmail(newEmail);
+    closeModal();
+  };
 
-
-    return (
-        <>
-
-            <nav className="salondashboard-navbar">
-                <button className="menu-btn" onClick={toggleSidebar}>
-                    <FaBars />
-                </button>
-                <h1>Salonify Dashboard</h1>
-            </nav>
-
-            <div className="ud-dashboard-container">
- {/* Sidebar */}
-            <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
-                <ul className="sidebar-menu">
-                    <li className="menu-item">
-                        <FaChartPie />
-                        <span>Dashboard</span>
-                    </li>
-
-                    <li className="menu-item dropdown">
-                        <div onClick={() => toggleDropdown("appointments")} className="menu-title">
-                            <FaUser />
-                            <span>Appointments</span>
-                            <FaChevronDown className={`arrow ${dropdownOpen["appointments"] ? "open" : ""}`} />
-                        </div>
-                        {dropdownOpen["appointments"] && (
-                            <ul className="submenu">
-                                <li>Upcoming</li>
-                                <li>Past</li>
-                            </ul>
-                        )}
-                    </li>
-
-                    <li className="menu-item dropdown">
-                        <div onClick={() => toggleDropdown("settings")} className="menu-title">
-                            <FaCog />
-                            <span>Settings</span>
-                            <FaChevronDown className={`arrow ${dropdownOpen["settings"] ? "open" : ""}`} />
-                        </div>
-                        {dropdownOpen["settings"] && (
-                            <ul className="submenu">
-                                <li>Profile</li>
-                                <li>Security</li>
-                            </ul>
-                        )}
-                    </li>
-
-                    <li className="menu-item">
-                        <FaSignOutAlt />
-                        <span>Logout</span>
-                    </li>
-                </ul>
-            </aside>
-
-                {/* Welcome Card (Full Width) */}
-                <div className="ud-welcome-card">
-                    <h2>Hello, {user.name}! Ready for your next pampering session?</h2>
-                    <button className="ud-edit-profile-btn">Edit Profile</button>
-                </div>
-
-                {/* Dashboard Grid */}
-                <div className="ud-dashboard-grid">
-                    <div className="ud-dashboard-card">
-                        <div className="ud-card-header">
-                            <FontAwesomeIcon icon={faCalendar} size="lg" />
-                            <span>Upcoming Appointment</span>
-                        </div>
-                        <p><strong>Salon:</strong> {user.upcomingAppointment.salon}</p>
-                        <p><strong>Service:</strong> {user.upcomingAppointment.service}</p>
-                        <p><strong>Date:</strong> {user.upcomingAppointment.date}</p>
-                        <p><strong>Time:</strong> {user.upcomingAppointment.time}</p>
-                        <button className="ud-action-btn">Modify / Cancel</button>
-                    </div>
-
-                    <div className="ud-dashboard-card">
-                        <div className="ud-card-header">
-                            <FontAwesomeIcon icon={faStar} size="lg" />
-                            <span>Loyalty Points</span>
-                        </div>
-                        <p className="ud-points">{user.points} Points</p>
-                        <p className="ud-reward-text">Earn {user.nextReward} by booking 2 more services!</p>
-                    </div>
-
-                    <div className="ud-dashboard-card">
-                        <div className="ud-card-header">
-                            <FontAwesomeIcon icon={faWallet} size="lg" />
-                            <span>Payments & Transactions</span>
-                        </div>
-                        <button className="ud-action-btn">View All Payments</button>
-                    </div>
-
-                    <div className="ud-dashboard-card">
-                        <div className="ud-card-header">
-                            <FontAwesomeIcon icon={faHeart} size="lg" />
-                            <span>Favorite Salons</span>
-                        </div>
-                        <button className="ud-action-btn">View Saved Salons</button>
-                    </div>
-
-                    <div className="ud-dashboard-card">
-                        <div className="ud-card-header">
-                            <FontAwesomeIcon icon={faCog} size="lg" />
-                            <span>Account Settings</span>
-                        </div>
-                        <button className="ud-action-btn">Manage Settings</button>
-                    </div>
-                </div>
+  return (
+    <div className="ud-dashboard-container">
+      <aside className="ud-sidebar">
+        <nav>
+          <ul className="ud-sidebar-list">
+            <li className={`ud-sidebar-item ${activeSection === 'profile' ? 'ud-active' : ''}`} onClick={() => handleNavigation('profile')}>
+              <FontAwesomeIcon icon={faUser} className="ud-sidebar-icon" /> Profile
+            </li>
+            <li className={`ud-sidebar-item ${activeSection === 'appointments' ? 'ud-active' : ''}`} onClick={() => handleNavigation('appointments')}>
+              <FontAwesomeIcon icon={faCalendarAlt} className="ud-sidebar-icon" /> Appointments
+            </li>
+            <li className={`ud-sidebar-item ${activeSection === 'favorites' ? 'ud-active' : ''}`} onClick={() => handleNavigation('favorites')}>
+              <FontAwesomeIcon icon={faHeart} className="ud-sidebar-icon" /> Favorites
+            </li>
+            <li className={`ud-sidebar-item ${activeSection === 'reviews' ? 'ud-active' : ''}`} onClick={() => handleNavigation('reviews')}>
+              <FontAwesomeIcon icon={faStar} className="ud-sidebar-icon" /> Reviews
+            </li>
+            <li className={`ud-sidebar-item ${activeSection === 'notifications' ? 'ud-active' : ''}`} onClick={() => handleNavigation('notifications')}>
+              <FontAwesomeIcon icon={faBell} className="ud-sidebar-icon" /> Notifications
+            </li>
+            <li className={`ud-sidebar-item ${activeSection === 'search' ? 'ud-active' : ''}`} onClick={() => handleNavigation('search')}>
+              <FontAwesomeIcon icon={faSearch} className="ud-sidebar-icon" /> Salon Search
+            </li>
+            <li className={`ud-sidebar-item ${activeSection === 'help' ? 'ud-active' : ''}`} onClick={() => handleNavigation('help')}>
+              <FontAwesomeIcon icon={faQuestionCircle} className="ud-sidebar-icon" /> Help
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <div className="ud-main-content">
+        <header className="ud-top-nav">
+          <input type="text" placeholder="Search salons..." onChange={(e) => setSearchQuery(e.target.value)} className="ud-search-input" />
+          <div className="ud-top-nav-right">
+            <div className="ud-notification-icon">
+              <span className="ud-notification-count">{notificationCount}</span>
+              <FontAwesomeIcon icon={faBell} />
             </div>
-        </>
-    );
-
+            <div className="ud-profile-dropdown" onClick={openProfileEdit}>
+              <FontAwesomeIcon icon={faUserCircle} />
+            </div>
+          </div>
+        </header>
+      </div>
+      {showProfileEdit && (
+        <div className="ud-modal">
+          <div className="ud-modal-content">
+            <h2>Edit Profile</h2>
+            <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Name" />
+            <input type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Email" />
+            <button onClick={() => handleProfileUpdate(userName, userEmail)}>Save</button>
+            <button onClick={closeModal}>Cancel</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
