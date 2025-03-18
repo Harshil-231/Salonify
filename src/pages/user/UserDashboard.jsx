@@ -4,10 +4,10 @@ import { faUser, faCalendarAlt, faHeart, faStar, faBell, faSearch, faQuestionCir
 import '../../styles/User.css';
 
 export const UserDashboard = () => {
-  const [activeSection, setActiveSection] = useState('appointments');
+  const [activeSection, setActiveSection] = useState('profile');
   const [userName, setUserName] = useState('Client Name');
   const [userEmail, setUserEmail] = useState('client@example.com');
-  const [notificationCount, setNotificationCount] = useState(5);
+  const [notificationCount, setNotificationCount] = useState(1);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showProfileEdit, setShowProfileEdit] = useState(false);
@@ -46,7 +46,7 @@ export const UserDashboard = () => {
             <li className={`ud-sidebar-item ${activeSection === 'favorites' ? 'ud-active' : ''}`} onClick={() => handleNavigation('favorites')}>
               <FontAwesomeIcon icon={faHeart} className="ud-sidebar-icon" /> Favorites
             </li>
-            <li className={`ud-sidebar-item ${activeSection === 'reviews' ? 'ud-active' : ''}`} onClick={() => handleNavigation('reviews')}>
+            <li className={`ud-sidebar-item ${activeSection === 'reviews' ? 'ud-active' : ''}`} onClick={() => handleNavigation('homepage')}>
               <FontAwesomeIcon icon={faStar} className="ud-sidebar-icon" /> Reviews
             </li>
             <li className={`ud-sidebar-item ${activeSection === 'notifications' ? 'ud-active' : ''}`} onClick={() => handleNavigation('notifications')}>

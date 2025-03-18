@@ -20,8 +20,9 @@ export const Navbar = () => {
                     <li><Link to="/features" className="nav-link">Features</Link></li>
                     <li><Link to="/pricing" className="nav-link">Pricing</Link></li>
                     <li><Link to="/blog" className="nav-link">Blog</Link></li>
-                    <li><Link to="/login" className="nav-btn">Login</Link></li>
-                    <li><Link to="/signup" className="nav-btn">Sign Up</Link></li>
+                    <li><Link to="/authpage" className="nav-btn">Login</Link></li>
+                    {/* <li><Link to="/login" className="nav-btn">Login</Link></li> */}
+                    {/* <li><Link to="/signup" className="nav-btn">Sign Up</Link></li> */}
                 </ul>
             </div>
         </nav>

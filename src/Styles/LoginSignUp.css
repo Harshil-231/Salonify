@@ -24,11 +24,11 @@
 .signup-form,
 .login-form {
     width: 400px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    /* background: rgba(255, 255, 255, 0.1); */
+    /* backdrop-filter: blur(10px); */
     padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    /* border-radius: 15px; */
+    /* box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3); */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -131,3 +131,69 @@
 .signup-redirect a:hover {
     color: #ff4d00;
 }
+
+/* Media Queries for LoginSignUp */
+
+/* Tablet to Small Tablet/Large Phone */
+@media (max-width: 768px) {
+    .signup-form,
+    .login-form {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .signup-title,
+    .login-title {
+      font-size: 24px;
+    }
+  
+    .input-field {
+      font-size: 14px;
+    }
+  
+    .submit-btn {
+      font-size: 14px;
+    }
+  }
+  
+  /* Small Phone */
+  @media (max-width: 480px) {
+    .signup-form,
+    .login-form {
+      padding: 15px;
+    }
+  
+    .signup-title,
+    .login-title {
+      font-size: 20px;
+    }
+  
+    .input-field {
+      font-size: 12px;
+    }
+  
+    .submit-btn {
+      font-size: 12px;
+    }
+  }
+  
+  /* Landscape Orientation (Phones) */
+  @media (max-height: 480px) and (orientation: landscape) {
+    .signup-form,
+    .login-form {
+      padding: 10px;
+    }
+  
+    .signup-title,
+    .login-title {
+      font-size: 18px;
+    }
+  
+    .input-field {
+      font-size: 10px;
+    }
+  
+    .submit-btn {
+      font-size: 10px;
+    }
+  }

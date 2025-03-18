@@ -1,0 +1,77 @@
+.auth-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .signup-form-container,
+  .login-form-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+  }
+  
+  .login-form-container {
+    right: 0;
+    z-index: 1;
+  }
+  
+  .signup-form-container {
+    z-index: 2;
+  }
+  
+  .image-section {
+    width: 50%;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    z-index: 3;
+  }
+  
+  .slide-left {
+    transform: translateX(-100%);
+  }
+  
+  .image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Darken overlay */
+  .image-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1; /* Place overlay above image */
+  }
+  
+  .image-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(90deg, #1a1a2e, #16213e);
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    z-index: 2; /* Place button above overlay */
+  }
+  
+  .image-button:hover {
+    background: rgba(255, 255, 255);
+    color:orange
+  }
+  

@@ -8,9 +8,7 @@ import axios from "axios"
 import { HomePage } from './pages/HomePage';
 import { Blog } from './pages/Blog';
 import { Features } from './pages/Features';
-import { Login } from './pages/Login';
 import { Pricing } from './pages/Pricing';
-import { SignUp } from './pages/SignUp';
 import { PrivateRoute } from './Components/PrivateRoute';
 
 import { AdminDashboard } from './pages/admin/AdminDashboard';
@@ -23,6 +21,7 @@ import { SalonDashboard } from './pages/salon/SalonDashboard';
 import { SalonProfile } from './pages/salon/SalonProfile';
 
 import { Trial } from './pages/Trial';
+import { AuthPage } from './pages/AuthPage';
 // import { Loader } from './Components/Common/Loader';
 
 // import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -45,27 +44,27 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/features" element={<Features />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/AuthPage" element={<AuthPage />} />
+
 
         {/* Admin Routes (Full Access) */}
         <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
-        <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Route>
 
         {/* User-Only Routes */}
         <Route element={<PrivateRoute allowedRoles={["user"]} />}>
-        <Route path="" element={<PrivateRoute />}/>
-        <Route path="/user-dashboard" element={<UserDashboard />} />
-        <Route path="/user-profile" element={<UserProfile />} />
-        <Route path="/user-profile/edit" element={<UserProfileEdit />} />
+          <Route path="" element={<PrivateRoute />} />
+          <Route path="/user-dashboard" element={<UserDashboard />} />
+          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/user-profile/edit" element={<UserProfileEdit />} />
         </Route>
 
         {/* Salon Owner Routes */}
         <Route element={<PrivateRoute allowedRoles={["salon owner"]} />}>
-        <Route path="/salon" element={<SalonDashboard />} />
-        <Route path="/salon-profile" element={<SalonProfile />} />
-        <Route path="/salon-dashboard" element={<SalonDashboard />} />
+          <Route path="/salon" element={<SalonDashboard />} />
+          <Route path="/salon-profile" element={<SalonProfile />} />
+          <Route path="/salon-dashboard" element={<SalonDashboard />} />
         </Route>
 
 
