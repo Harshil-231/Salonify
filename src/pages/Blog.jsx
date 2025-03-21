@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Navbar } from '../Components/Common/Navbar.jsx'
+// import { Navbar } from '../Components/Common/Navbar.jsx'
 import "../Styles/priceblog.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -90,7 +90,7 @@ export const Blog = () => {
 
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="blog-container">
                 <h1 className="blog-title">Latest News on Salonify</h1>
 

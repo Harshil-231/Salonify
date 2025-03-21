@@ -210,7 +210,7 @@ export const UserProfile = () => {
                         <label>Gender</label>
                         <div>-</div>
                     </div>
-                </div>
+                </div> 
 
                 <div className="fresh-address-section">
                     <div className="fresh-address-title">My addresses</div>

@@ -19,22 +19,25 @@ export const Login = () => {
 
   const submitHandler = async (data) => {
     try {
-      const res = await axios.post("http://localhost:3200/login", data);
+      const res = await axios.post("http://localhost:3200/login/user", data);
+      console.log(res.data)
       if (res.status === 200) {
         notify("Login successful!");
+        // console.log(res.data)
         localStorage.setItem("id", res.data.data._id);
         localStorage.setItem("role", res.data.data.roleId.name);
 
-        if (res.data.data.roleId.name === "USER") {
-          navigate("/user-dashboard");
-        } else if (res.data.data.roleId.name === "Admin") {
-          navigate("/");
-        } else if (res.data.data.roleId.name === "Salon Owner") {
-          navigate("/salon-dashboard");
-        }
-      } else {
-        notify("Invalid credentials", "error");
+        setTimeout(() => {
+          if (res.data.data.roleId.name === "USER") {
+            navigate("/user-dashboard");
+          } else if (res.data.data.roleId.name === "Admin") {
+            navigate("/");
+          } else if (res.data.data.roleId.name === "Salon Owner") {
+            navigate("/salon-dashboard");
+          }
+        }, 1000); // Delay navigation by 1 second
       }
+
     } catch (error) {
       console.error("Login error:", error);
       notify("An error occurred while logging in", "error");
@@ -44,7 +47,7 @@ export const Login = () => {
   return (
     <div className="login-container">
       {loading && <Loader />}
-      <ToastContainer position="top-center" autoClose={2000} theme="dark" transition={Bounce} />
+      <ToastContainer position="top-center" autoClose={1000} theme="dark" transition={Bounce} />
       <h2 className="login-title">Login</h2>
 
       <form onSubmit={handleSubmit(submitHandler)} className="login-form">

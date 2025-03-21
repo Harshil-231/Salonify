@@ -48,10 +48,10 @@ body {
 }
 
 
-.hero .overlay .test P {
+/* .hero .overlay .test P {
     font-weight: lighter;
     font-size: 1rem;
-}
+} */
 
 /* Why Choose Section */
 .why-choose {
@@ -83,10 +83,11 @@ body {
     border-radius: 8px;
 }
 
-.card:hover{
-    transform: scale(1.04);
+.card:hover {
+    transform: scale(1.03);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
+
 .card-text {
     margin: 20px;
     color: #ffffff
@@ -112,7 +113,7 @@ body {
 }
 
 
-.tailored-box:hover{
+.tailored-box:hover {
     transform: scale(1.04);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }

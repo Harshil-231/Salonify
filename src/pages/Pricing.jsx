@@ -1,12 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { Navbar } from '../Components/Common/Navbar';
+// import { Navbar } from '../Components/Common/Navbar';
 import "../Styles/priceblog.css"
 
 export const Pricing = () => {
     return (
         <>
-        <Navbar />
+        {/* <Navbar /> */}
         <section className="pricing-container">
             <div className="pricing-intro">
                 <h2>We like to keep it Simple.</h2>

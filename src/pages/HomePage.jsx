@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar } from '../Components/Common/Navbar';
+// import { Navbar } from '../Components/Common/Navbar';
 import { Footer } from '../Components/Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -9,14 +9,14 @@ import '../Styles/homepage.css';
 export const HomePage = (w) => {
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="homepage">
                 {/* Hero Section */}
                 <section className="hero" style={{ backgroundImage: "url('/images/SALON3.jpg')" }}>
                     <div className="overlay">
                         <div className="test">
                             <h1>Digitize your Salon/Spa</h1>
-                            <p>Join over 2000 brands who use Salonify to improve their customer retention and increase their profits
+                            <p className='text-white-900'>Join over 2000 brands who use Salonify to improve their customer retention and increase their profits
                             </p>
                         </div>
                     </div>
@@ -82,7 +82,7 @@ export const HomePage = (w) => {
                 {/* Contact Section */}
                 <section className="contact">
                     <p>
-                        <FontAwesomeIcon icon={faPhone} /> 8238506893 | 
+                        <FontAwesomeIcon icon={faPhone} /> 8238506893 |
                         <FontAwesomeIcon icon={faEnvelope} /> harshilpanchal1523@gmail.com
                     </p>
                 </section>

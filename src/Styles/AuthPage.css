@@ -46,7 +46,7 @@
   
   /* Darken overlay */
   .image-section::before {
-    content: '';
+    content:"none";
     position: absolute;
     top: 0;
     left: 0;

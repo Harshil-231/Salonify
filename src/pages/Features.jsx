@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Styles/Features.css';
-import { Navbar } from '../Components/Common/Navbar';
+// import { Navbar } from '../Components/Common/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faReceipt, faCalendarAlt, faFolder, faCreditCard,
@@ -104,7 +104,7 @@ export const Features = () => {
 
     return (
         <>
-            <Navbar />
+            {/* <Navbar /> */}
             <section className="features-section">
                 {featuresData.map((feature, index) => (
                     <div className="feature-card" key={index}>

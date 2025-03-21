@@ -1,0 +1,10 @@
+.map-container {
+    height: 500px;
+    width: 500px;
+    float:left;
+    /* width: 100%; */
+    transform: scale(1.1);
+    /* Adjust the scale factor as needed */
+    transform-origin: top left;
+    /* keeps map in place */
+}
