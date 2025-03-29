@@ -9,31 +9,57 @@
 }
 
 /* Sidebar */
-.ud-sidebar {
+/* User Sidebar */
+.user-sidebar {
+  position: fixed;
+  top: 6rem;
+  left: 0;
+  height: 100%;
   width: 250px;
-  background: #2c3e50;
+  background-color: #2d3748; /* Dark gray */
   color: white;
-  padding-top: 20px;
+  padding-top: 1rem;
+  transition: transform 0.3s ease-in-out;
 }
 
-.ud-sidebar-list {
-  list-style: none;
-  padding: 0;
+.user-name {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #f8f9fa;
 }
 
-.ud-sidebar-item {
-  padding: 15px;
-  cursor: pointer;
+.user-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-nav-link {
   display: flex;
   align-items: center;
-  gap: 10px;
-  transition: background 0.3s;
+  gap: 0.8rem;
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease-in-out;
 }
 
-.ud-sidebar-item:hover,
-.ud-active {
-  background: #1abc9c;
+.user-nav-link:hover {
+  background-color: #4a5568; /* Lighter gray */
+  text-decoration: none;
 }
+
+.user-nav-link svg {
+  font-size: 1.2rem;
+}
+
+/* Toggle Sidebar */
+.sidebar-hidden {
+  transform: translateX(-250px);
+}
+
 
 /* Main Content */
 .ud-main-content {
@@ -71,13 +97,13 @@
 
 .ud-notification-count {
   position: absolute;
-  top: -5px;
-  right: -10px;
-  background: red;
+  top: -7px;
+  right: -15px;
+  background: rgb(255, 206, 82);
   color: white;
   border-radius: 50%;
-  padding: 3px 7px;
-  font-size: 12px;
+  padding: 1px 7px;
+  font-size: 11px;
 }
 
 /* Profile Dropdown */
@@ -219,43 +245,39 @@
 }
 
 .fresh-header {
-  grid-row: 1;
-  /* Header stays at the top */
-  grid-column: 1 / -1;
-  /* Span across all columns */
+  grid-row: 1; /* Header stays at the top */
+  grid-column: 1 / -1; /* Span across all columns */
   display: flex;
   align-items: center;
-  padding: 30px 20px 20px;
+  justify-content: space-between; /* Proper spacing */
+  padding: 20px;
   border-bottom: 1px solid #eee;
-  position: relative;
-  /* Needed for menu button positioning */
-  z-index: 10;
-  /* Ensure header is above sidebar */
+  position: relative; /* Needed for dropdown positioning */
+  z-index: 10; /* Ensure header is above sidebar */
+  flex-wrap: wrap; /* Allows wrapping when needed */
 }
 
 .fresh-logo {
   font-size: 1.7em;
   font-weight: bold;
-  margin-right: 10px;
-  /* Reduced margin */
+  flex-shrink: 0; /* Prevents logo from shrinking */
 }
 
 .menu-btn {
   font-size: 24px;
   cursor: pointer;
   color: rgb(255, 77, 0);
-  /* Changed color */
   background: none;
   border: none;
-  margin-left: 20px;
-  /* Added margin */
+  margin-left: 10px;
 }
 
 .fresh-search-bar {
   display: flex;
-  /* Use flex to arrange search inputs */
   align-items: center;
-  margin-left: 10%
+  flex-grow: 1; /* Allows it to expand */
+  justify-content: center; /* Center align */
+  margin: 0 10px;
 }
 
 .fresh-search-bar input {
@@ -263,30 +285,20 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-right: 10px;
+  min-width: 150px;
 }
 
-.fresh-location,
-.fresh-date,
-.fresh-time {
-  margin-right: 10px;
-  color: #555;
-}
-
-
-/* ... (rest of your CSS) */
-.fresh-user-icon-nd-drop{
-  margin-left: 5%;
-  padding:4px 10px 4px 4px;
-  background-color:orange;
-  border-radius:20px
+.fresh-user-icon-nd-drop {
+  display: flex;
+  align-items: center;
+  background-color: orange;
+  padding: 4px 10px;
+  border-radius: 20px;
 }
 
 .fresh-user-icon {
-  position: relative;
-  /* For dropdown positioning */
   display: flex;
   align-items: center;
-  /* margin-left: 10% */
 }
 
 .fresh-user-icon-placeholder {
@@ -297,19 +309,9 @@
   cursor: pointer;
 }
 
-.fresh-dropdown-arrow {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  margin-left: 5px;  
-  transition: transform 0.3s ease;
-}
-
 .fresh-dropdown {
   position: absolute;
   top: 100%;
-  /* Position below the icon */
   right: 0;
   width: 200px;
   background: linear-gradient(360deg, #1a1a2e, #16213e);
@@ -317,28 +319,21 @@
   border-radius: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 100;
-  /* Ensure it's above other elements */
   margin-top: 5px;
-}
-
-.fresh-dropdown-title {
-  padding: 10px 15px;
-  font-weight: bold;
-  border-bottom: 1px solid #eee;
 }
 
 .fresh-dropdown-item {
   display: flex;
-  text-align: center;
   align-items: center;
   padding: 10px 15px;
-  text-decoration: none;
   color: #fff;
+  text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
 .fresh-dropdown-item:hover {
   background-color: #f0f0f0;
+  color: black;
 }
 
 .fresh-dropdown-icon {
@@ -349,6 +344,56 @@
   border-bottom: 1px solid #eee;
   margin: 5px 15px;
 }
+
+/* ======= Responsive Adjustments ======= */
+@media (max-width: 1000px) {
+  .fresh-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .fresh-logo {
+    margin-bottom: 10px;
+  }
+
+  .fresh-search-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .fresh-user-icon-nd-drop {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .fresh-header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .fresh-logo {
+    font-size: 1.5em;
+  }
+
+  .fresh-search-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fresh-user-icon-nd-drop {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
 
 .fresh-sidebar {
   grid-row: 2;
@@ -427,7 +472,16 @@
 }
 
 .fresh-profile-edit-btn {
-  color: yellow;
+  color: #1abc9c;
+  text-decoration: none;  
+  margin-left: 90%;
+  text-align: end;
+}
+
+.fresh-profile-edit-btn:hover {
+
+  color:#ffffff;
+  text-decoration: none;
   margin-right: 0px;
   text-align: end;
 }
@@ -450,10 +504,11 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  /* background-color: #fff; */
+  color:#16213e;
+  background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
-  padding: 5px 10px;
+  padding: 1px 5px;
   cursor: pointer;
 }
 
@@ -499,10 +554,133 @@
 
 .fresh-add-address-button {
   background-color: #f0f0f0;
+  color:#16213e;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
 }
 
+@media (max-width: 1000px) {
+  .fresh-sidebar {
+    display: none;
+  }
+
+  .fresh-main-content {
+    grid-column: 1 / -1;
+    /* Take full width when sidebar is hidden */
+  }
+}
+
+
 /*++++++++++++  EDIT PROFILE CSS +++++++++++*/
+
+
+.upe-container {
+  padding: 20px;
+  /* background-color: #f9f9f9; */
+  font-family: sans-serif;
+  color:#000;
+  max-width: 600px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+.fresh-main-content{
+  padding:70px 60px;
+}
+
+.upe-header {
+  display: flex;
+  justify-content: flex-end; /* Align actions to the right */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.upe-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.upe-close {
+  background-color: #eee;
+  margin-right: 10px;
+}
+
+.upe-save {
+  background-color: #000;
+  color: white;
+}
+
+.upe-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.upe-form-group {
+  flex: 1;
+  margin-right: 10px;
+  min-width: 0;
+}
+
+.upe-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color:#ffffff;
+}
+
+.upe-form-group input,
+.upe-form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.upe-error {
+  color: red;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+.upe-mobile-input {
+  display: flex;
+}
+
+.upe-mobile-input select {
+  width: 60px;
+  margin-right: 5px;
+}
+
+.upe-dob-input {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .upe-container {
+    max-width: 100%;
+    margin: 10px;
+  }
+
+  .upe-form-row {
+    flex-direction: column;
+  }
+
+  .upe-form-group {
+    margin-right: 0;
+  }
+
+  .upe-mobile-input select {
+    width: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .upe-mobile-input select {
+    width: 30px;
+  }
+}
