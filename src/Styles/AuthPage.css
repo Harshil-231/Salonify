@@ -46,7 +46,7 @@
   
   /* Darken overlay */
   .image-section::before {
-    content:"none";
+    content:"";
     position: absolute;
     top: 0;
     left: 0;
@@ -72,6 +72,6 @@
   
   .image-button:hover {
     background: rgba(255, 255, 255);
-    color:orange
+    color:#16213e
   }
   

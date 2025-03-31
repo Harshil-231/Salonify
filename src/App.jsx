@@ -11,14 +11,22 @@ import { Pricing } from './pages/Pricing';
 import { PrivateRoute } from './Components/PrivateRoute';
 
 import { AdminDashboard } from './pages/admin/AdminDashboard';
+import { SODashboard } from './pages/salon/SODashboard';
 import { UserDashboard } from './pages/user/UserDashboard';
+
 import { UserProfile } from './pages/user/UserProfile';
 import { UserProfileEdit } from './pages/user/UserProfileEdit';
-import { SalonDashboard } from './pages/salon/SalonDashboard';
+
 import { SalonProfile } from './pages/salon/SalonProfile';
+
+import { Navbar } from './Components/Common/Navbar';
+
+
 import { Trial } from './pages/Trial';
 import { AuthPage } from './pages/AuthPage';
-import { Navbar } from './Components/Common/Navbar';
+
+
+import { BookAppointments } from './pages/user/BookAppointments';
 
 const GOOGLE_CLIENT_ID = '616976635256-6dbof6or41jhmvp75blc9cgbv4okdidn.apps.googleusercontent.com';
 
@@ -31,6 +39,8 @@ function App() {
     return (
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
             {showNavbar && <Navbar />} {/* Conditionally render Navbar */}
+
+
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/blog" element={<Blog />} />
@@ -42,16 +52,19 @@ function App() {
                     <Route path="/admin" element={<AdminDashboard />} />
                 </Route>
                 {/* User-Only Routes */}
-                <Route element={<PrivateRoute allowedRoles={['user']} />}>
-                    <Route path="/user-dashboard" element={<UserDashboard />} />
-                    <Route path="/user-profile" element={<UserProfile />} />
-                    <Route path="/user-profile/edit" element={<UserProfileEdit />} />
+                <Route element={<PrivateRoute allowedRoles={['customer']} />}>
+                    <Route path="/user-dashboard" element={<UserDashboard />} >
+                        <Route path="profile" element={<UserProfile />} />
+                        <Route path="profile-edit" element={<UserProfileEdit />} />
+                        <Route path="appointments" element={<BookAppointments />} />
+                    </Route>
                 </Route>
                 {/* Salon Owner Routes */}
                 <Route element={<PrivateRoute allowedRoles={['salon owner']} />}>
-                    <Route path="/salon" element={<SalonDashboard />} />
-                    <Route path="/salon-profile" element={<SalonProfile />} />
-                    <Route path="/salon-dashboard" element={<SalonDashboard />} />
+                    <Route path="/so-dashboard" element={<SODashboard />} >
+                        <Route path="profile" element={<SalonProfile />} />
+                        <Route path="profile" element={<SalonProfile />} />
+                    </Route>
                 </Route>
                 <Route path="/trial" element={<Trial />} />
             </Routes>

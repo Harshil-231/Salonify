@@ -26,7 +26,7 @@ export const PrivateRoute = () => {
         return <h1>Loading...</h1>; // Prevents redirection before auth state is set
     }
 
-    return auth.isLoggedin ? <Outlet /> : <Navigate to="/login" />;
+    return auth.isLoggedin ? <Outlet /> : <Navigate to="/authpage" />;
 };
 
 

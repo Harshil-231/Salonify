@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #1a1a2e, #16213e);
     color: rgb(255, 255, 255);
-    text-align: center;
+    /* text-align: center;   */
 }
 
 /* Hero Section */
@@ -81,6 +81,8 @@ body {
     /* color:#fff; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+
 }
 
 .card:hover {
@@ -97,7 +99,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 8px;
-    box-shadow: 2px 2px 40px rgba(255, 255, 255, 0.1);
+    /* box-shadow: 2px 2px 40px rgba(255, 255, 255, 0.1); */
 
 }
 
@@ -108,6 +110,7 @@ body {
     padding: 40px;
     background: rgba(255, 255, 255, 0.03);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
     text-align: center;
     border-radius: 10px;
 }
@@ -125,10 +128,12 @@ body {
 
 /* Client and Review Slider */
 .slider-section {
+    text-align: center;
+    font-size: 30px;
     margin: 50px 100px;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.03);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    /* background: rgba(255, 255, 255, 0.03); */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); */
 
 }
 
@@ -140,7 +145,7 @@ body {
 .slider {
     display: block;
     width: 100%;
-    overflow: scroll;
+    overflow-x: scroll;
     white-space: nowrap;
     position: relative;
     animation: slide 9s linear infinite;
@@ -180,6 +185,7 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     background: linear-gradient(90deg, #ff9a00, #ff4d00);
+    transition: transform 0.3s ease-in-out;
     color: #ffffff;
     border: none;
     border-radius: 5px;

@@ -1,28 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import { Navbar } from '../Components/Common/Navbar';
 import { Footer } from '../Components/Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import '../Styles/homepage.css';
+import SearchBox from '../Components/Common/searchbox';
 
-export const HomePage = (w) => {
+const images = ["/images/SALON5.jpg", "/images/SALON2.jpg", "/images/SALON3.jpg", "/images/SALON4.jpg"];
+
+export const HomePage = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
+        }, 3000); // Change image every 3 seconds
+
+        return () => clearInterval(interval); // Cleanup on unmount
+    }, []);
+
     return (
         <>
             {/* <Navbar /> */}
             <div className="homepage">
-                {/* Hero Section */}
-                <section className="hero" style={{ backgroundImage: "url('/images/SALON3.jpg')" }}>
+                {/* Hero Section with Auto-Slider */}
+                <section className="hero" style={{ backgroundImage: `url(${images[currentSlide]})` }}>
                     <div className="overlay">
                         <div className="test">
                             <h1>Digitize your Salon/Spa</h1>
-                            <p className='text-white-900'>Join over 2000 brands who use Salonify to improve their customer retention and increase their profits
+                            <p className="text-white-900">
+                                Join over 2000 brands who use Salonify to improve their customer retention and increase their profits
                             </p>
+                            <SearchBox />
+
                         </div>
                     </div>
                 </section>
 
                 {/* Why Choose Section */}
+
                 <section className="why-choose">
                     <h2>Why You Should Choose Hp's Salonify</h2>
                     <div className="card-layout">
@@ -73,9 +90,7 @@ export const HomePage = (w) => {
                 <section className="trial-section">
                     <h2>Start Your 7-Day Trial Today. No Credit Card Needed!</h2>
                     <Link to="/signup">
-                        <button>
-                            Sign Up
-                        </button>
+                        <button>Sign Up</button>
                     </Link>
                 </section>
 

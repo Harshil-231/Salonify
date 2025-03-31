@@ -1,64 +1,162 @@
+// import React, { useState } from "react";
+
+// export const SalonProfile = () => {
+//     const [salon, setSalon] = useState({
+//         name: "raja",
+//         location: "raja",
+//         contact: "raja",
+//         workingHours: "raja",
+//         description: "raja",
+//     });
+
+//     const handleChange = (e) => {
+//         setSalon({ ...salon, [e.target.name]: e.target.value });
+//     };
+
+//     const handleSubmit = (e) => {
+//         e.preventDefault();
+//         console.log("Salon Details Submitted:", salon);
+//         alert("Salon details saved successfully!");
+//     };
+
+//     return (
+//         <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
+//             <h2 className="text-2xl font-bold text-gray-800 mb-4">Salon Details</h2>
+//             <form onSubmit={handleSubmit} className="space-y-4">
+//                 <div>
+//                     <label className="block text-gray-700 font-medium">Salon Name</label>
+//                     <input
+//                         type="text"
+//                         name="name"
+//                         value={salon.name}
+//                         onChange={handleChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                         required
+//                     />
+//                 </div>
+
+//                 <div>
+//                     <label className="block text-gray-700 font-medium">Location</label>
+//                     <input
+//                         type="text"
+//                         name="location"
+//                         value={salon.location}
+//                         onChange={handleChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                         required
+//                     />
+//                 </div>
+
+//                 <div>
+//                     <label className="block text-gray-700 font-medium">Contact</label>
+//                     <input
+//                         type="text"
+//                         name="contact"
+//                         value={salon.contact}
+//                         onChange={handleChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                         required
+//                     />
+//                 </div>
+
+//                 <div>
+//                     <label className="block text-gray-700 font-medium">Working Hours</label>
+//                     <input
+//                         type="text"
+//                         name="workingHours"
+//                         value={salon.workingHours}
+//                         onChange={handleChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                         placeholder="e.g., Mon-Sat: 10 AM - 8 PM"
+//                         required
+//                     />
+//                 </div>
+
+//                 <div>
+//                     <label className="block text-gray-700 font-medium">Description</label>
+//                     <textarea
+//                         name="description"
+//                         value={salon.description}
+//                         onChange={handleChange}
+//                         className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                         rows="3"
+//                         required
+//                     />
+//                 </div>
+
+//                 <button
+//                     type="submit"
+//                     className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition"
+//                 >
+//                     Save Salon Details
+//                 </button>
+//             </form>
+//         </div>
+//     );
+// };
+
+
 import React from "react";
-import "../../Styles/Salon.css"; // Assuming styling is here
+import { Link } from "react-router-dom";
 
 export const SalonProfile = () => {
-    const salonData = {
-        name: "Luxury Glow Salon",
-        description: "A premium beauty and wellness salon offering the best services for your hair, skin, and relaxation needs.",
-        location: "123 Beauty Street, Cityville",
-        contact: "+1 234 567 890",
-        workingHours: "Mon-Sat: 10 AM - 8 PM",
-        services: [
-            { name: "Haircut & Styling", price: "$30" },
-            { name: "Facial & Skin Care", price: "$50" },
-            { name: "Massage Therapy", price: "$40" },
-            { name: "Manicure & Pedicure", price: "$25" },
-        ],
-        images: [
-            "/images/SALON1.jpg",
-            "/images/salon2.jpg",
-            "/images/salon3.jpg",
-        ],
-        reviews: [
-            { user: "Emily R.", rating: 5, comment: "Amazing service! Loved the ambiance." },
-            { user: "James L.", rating: 4, comment: "Great haircut and friendly staff." },
-        ],
-    };
-
-    return (
-        <div className="salon-profile-container">
-            <h2>{salonData.name}</h2>
-            <p>{salonData.description}</p>
-
-            <div className="salon-details">
-                <p><strong>📍 Location:</strong> {salonData.location}</p>
-                <p><strong>📞 Contact:</strong> {salonData.contact}</p>
-                <p><strong>⏰ Working Hours:</strong> {salonData.workingHours}</p>
-            </div>
-
-            <h3>💇‍♀️ Our Services</h3>
-            <ul>
-                {salonData.services.map((service, index) => (
-                    <li key={index}>{service.name} - <strong>{service.price}</strong></li>
-                ))}
-            </ul>
-
-            <h3>📸 Gallery</h3>
-            <div className="salon-gallery">
-                {salonData.images.map((image, index) => (
-                    <img key={index} src={image} alt={`Salon ${index + 1}`} className="salon-image" />
-                ))}
-            </div>
-
-            <h3>⭐ Customer Reviews</h3>
-            <div className="salon-reviews">
-                {salonData.reviews.map((review, index) => (
-                    <div key={index} className="review">
-                        <p><strong>{review.user}</strong> ({review.rating}⭐)</p>
-                        <p>{review.comment}</p>
-                    </div>
-                ))}
-            </div>
+  return (
+    <div className="bg-gray-900 min-h-screen flex flex-col items-center p-6">
+      <main className="bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-2xl">
+        <div className="flex justify-between items-center border-b pb-4 mb-4">
+          <h2 className="text-xl font-semibold">Salon Owner Profile</h2>
+          <Link to="/salon-owner/edit" className="text-blue-500 hover:underline">
+            Edit Profile
+          </Link>
         </div>
-    );
+        
+        {/* Profile Image */}
+        <div className="flex flex-col items-center mb-6">
+          <img
+            src="/images/chacha.jpg"
+            alt="Salon Owner"
+            className="rounded-full w-24 h-24 object-cover mb-2 border-2 border-gray-300"
+          />
+          <button className="text-sm text-blue-500 hover:underline">Edit</button>
+        </div>
+        
+        {/* Owner Details */}
+        <div className="space-y-4">
+          <div>
+            <label className="text-orange-400">Owner Name</label>
+            <p className="text-white font-medium">Harshil Panchal</p>
+          </div>
+          <div>
+            <label className="text-orange-400">Email</label>
+            <p className="text-white font-medium">harshil@gmail.com</p>
+          </div>
+          <div>
+            <label className="text-orange-400">Contact</label>
+            <p className="text-white font-medium">8238584095</p>
+          </div>
+        </div>
+        
+        {/* Salon Details */}
+        <div className="mt-6 space-y-4 border-t pt-4">
+          <h3 className="text-lg font-semibold">Salon Details</h3>
+          <div>
+            <label className="text-orange-400">Salon Name</label>
+            <p className="text-white font-medium">Luxury Hair & Spa</p>
+          </div>
+          <div>
+            <label className="text-orange-400">Address</label>
+            <p className="text-white font-medium">123 Main Street, Cityville</p>
+          </div>
+          <div>
+            <label className="text-orange-400">Services Offered</label>
+            <p className="text-white font-medium">Haircuts, Facials, Massages</p>
+          </div>
+          <div>
+            <label className="text-orange-400">Rating</label>
+            <p className="text-white font-medium">4.5/5</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
 };
