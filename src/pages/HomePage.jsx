@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-// import { Navbar } from '../Components/Common/Navbar';
 import { Footer } from '../Components/Common/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
@@ -11,29 +10,57 @@ const images = ["/images/SALON5.jpg", "/images/SALON2.jpg", "/images/SALON3.jpg"
 
 export const HomePage = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [backgroundImage, setBackgroundImage] = useState(images[0]); // Initial background image
+
+    const heroRef = useRef(null);
+    const testRef = useRef(null);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentSlide((prevSlide) => (prevSlide + 1) % images.length);
-        }, 3000); // Change image every 3 seconds
+        }, 3000);
 
-        return () => clearInterval(interval); // Cleanup on unmount
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        setBackgroundImage(images[currentSlide]);
+    }, [currentSlide]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!heroRef.current || !testRef.current) return;
+
+            const heroBottom = heroRef.current.getBoundingClientRect().bottom;
+            const testTop = testRef.current.getBoundingClientRect().top;
+
+            if (testTop > 10 && testTop < heroBottom) {
+                testRef.current.style.position = 'sticky';
+                testRef.current.style.top = '70px';
+            } else if (testTop >= heroBottom) {
+                testRef.current.style.position = 'relative';
+                testRef.current.style.top = 'auto';
+            } else if (testTop <= 50) {
+                testRef.current.style.position = 'sticky';
+                testRef.current.style.top = '50px';
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <>
-            {/* <Navbar /> */}
             <div className="homepage">
-                {/* Hero Section with Auto-Slider */}
-                <section className="hero" style={{ backgroundImage: `url(${images[currentSlide]})` }}>
+                <section className="hero" ref={heroRef} style={{ backgroundImage: `url(${backgroundImage})` }}>
                     <div className="overlay">
-                        <div className="test">
+                        <div className="test" ref={testRef}>
                             <h1>Digitize your Salon/Spa</h1>
                             <p className="text-white-900">
                                 Join over 2000 brands who use Salonify to improve their customer retention and increase their profits
                             </p>
                             <SearchBox />
-
                         </div>
                     </div>
                 </section>
@@ -72,6 +99,9 @@ export const HomePage = () => {
                         <img src="/images/dress.jpg" alt="Client 2" />
                         <img src="/images/suit.jpg" alt="Client 3" />
                         <img src="/images/CLIENT4.jpg" alt="Client 4" />
+                        <img src="/images/CLIENT4.jpg" alt="Client 4" />
+                        <img src="/images/CLIENT4.jpg" alt="Client 4" />
+                        <img src="/images/CLIENT4.jpg" alt="Client 4" />
                     </div>
                 </section>
 
@@ -89,7 +119,7 @@ export const HomePage = () => {
                 {/* Trial Section */}
                 <section className="trial-section">
                     <h2>Start Your 7-Day Trial Today. No Credit Card Needed!</h2>
-                    <Link to="/signup">
+                    <Link to="/authpage">
                         <button>Sign Up</button>
                     </Link>
                 </section>

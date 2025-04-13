@@ -16,7 +16,7 @@ export const SODashboard = () => {
                 <div className="flex-1 mt-24" > {/* Make the content area flexible */}
                     <Outlet /> {/* Render nested routes here */}
                 </div>
-                
+               
             </div>
         </div>
     );

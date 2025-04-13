@@ -6,11 +6,12 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const SearchBox = () => {
-    const [treatment, setTreatment] = useState('All treatments and venues');
+    const [treatment, setTreatment] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
+    const [filteredTreatments, setFilteredTreatments] = useState([]);
 
     const treatments = [
         'Haircut',
@@ -30,7 +31,28 @@ const SearchBox = () => {
     };
 
     const handleSearch = () => {
-        navigate('/search-results');
+        navigate('/search');
+    };
+
+    const handleInputChange = (event) => {
+        const inputValue = event.target.value;
+        setTreatment(inputValue);
+
+        if (inputValue) {
+            const filtered = treatments.filter((item) =>
+                item.toLowerCase().includes(inputValue.toLowerCase())
+            );
+            setFilteredTreatments(filtered);
+            setShowDropdown(true);
+        } else {
+            setFilteredTreatments(treatments); // Show all when input is empty
+            setShowDropdown(true);
+        }
+    };
+
+    const handleInputClick = () => {
+        setFilteredTreatments(treatments); // Show all options on click
+        setShowDropdown(true);
     };
 
     useEffect(() => {
@@ -48,21 +70,25 @@ const SearchBox = () => {
     }, [dropdownRef]);
 
     return (
-        <div className="bg-white rounded-lg p-6 shadow-md w-full max-w-md mx-auto">
+        <div className="bg-blue-50 rounded-lg p-6 shadow-md w-full max-w-md mx-auto">
             <div className="relative mb-4">
-                <div
-                    className="border rounded-md p-2 flex items-center cursor-pointer"
-                    onClick={() => setShowDropdown(!showDropdown)}
-                >
-                    <FontAwesomeIcon icon={faSearch} className="mr-2 text-gray-600" /> {/* Changed color */}
-                    <span className="text-gray-800">{treatment}</span> {/* Changed color */}
+                <div className="border rounded-md p-2 flex items-center">
+                    <FontAwesomeIcon icon={faSearch} className="mr-2 text-gray-600" />
+                    <input
+                        type="text"
+                        value={treatment}
+                        onChange={handleInputChange}
+                        placeholder="Search treatments or venues"
+                        className="border-none w-full bg-blue-50 outline-none text-gray-800"
+                        onClick={handleInputClick} // Added click handler
+                    />
                 </div>
-                {showDropdown && (
-                    <div ref={dropdownRef} className="absolute mt-1 w-full bg-white rounded-md shadow-lg z-10">
-                        {treatments.map((item) => (
+                {showDropdown && filteredTreatments.length > 0 && (
+                    <div ref={dropdownRef} className="absolute mt-1 w-full bg-blue-50 rounded-md shadow-lg z-10">
+                        {filteredTreatments.map((item) => (
                             <div
                                 key={item}
-                                className="p-2 hover:bg-gray-100 cursor-pointer text-gray-800"
+                                className="p-2 hover:bg-white cursor-pointer text-gray-800"
                                 onClick={() => handleTreatmentChange(item)}
                             >
                                 {item}
@@ -73,23 +99,23 @@ const SearchBox = () => {
             </div>
 
             <div className="border rounded-md p-2 mb-4 flex items-center">
-                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 text-gray-600" /> {/* Changed color */}
-                <span className="text-gray-800">Current location</span> {/* Changed color */}
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2 text-gray-600" />
+                <span className="text-gray-800">Current location</span>
             </div>
 
             <div className="flex space-x-2 mb-4">
                 <div className="border rounded-md p-2 flex items-center flex-1">
-                    <FontAwesomeIcon icon={faCalendarAlt} className="mr-2 text-gray-600" /> {/* Changed color */}
+                    <FontAwesomeIcon icon={faCalendarAlt} className="mr-2  text-gray-600" />
                     <DatePicker
                         selected={selectedDate}
                         onChange={(date) => setSelectedDate(date)}
                         dateFormat="dd/MM/yyyy"
-                        className="border-none w-full outline-none text-gray-800"
+                        className="border-none w-full bg-blue-50 outline-none text-gray-800"
                     />
                 </div>
                 <div className="border rounded-md p-2 flex items-center flex-1">
-                    <FontAwesomeIcon icon={faClock} className="mr-2 text-gray-600" /> {/* Changed color */}
-                    <span className="text-gray-800">Any time</span> {/* Changed color */}
+                    <FontAwesomeIcon icon={faClock} className="mr-2 text-gray-600" />
+                    <span className="text-gray-800">Any time</span>
                 </div>
             </div>
 

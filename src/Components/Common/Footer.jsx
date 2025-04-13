@@ -65,7 +65,7 @@ export const Footer = () => {
             <a href="#" className="text-gray-600 hover:text-gray-800">
               <FaFacebook size={24} />
             </a>
-            <a href="#" className="text-gray-600 hover:text-gray-800">
+            <a href="https://www.youtube.com/@laxmanpatil9842" className="text-gray-600 hover:text-gray-800">
               <FaYoutube size={24} />
             </a>
           </div>

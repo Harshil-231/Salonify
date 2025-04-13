@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaSearch, FaUser } from "react-icons/fa";
+import {Link} from 'react-router-dom'
 
 export const SONavbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -7,9 +8,9 @@ export const SONavbar = () => {
     return (
         <nav className="bg-gray-900 text-white p-4 flex justify-between items-center fixed w-full top-0 z-10">
             {/* Logo & Home Button */}
-            <div className="flex items-center">
-                <img src="/images/Salonify.png" alt="Logo" className="h-10 w-100" />
-            </div>
+            <Link to="/" className="flex items-center">
+            <img src="/images/Salonify.png" alt="logo" className="h-12 w-auto" />
+          </Link>
 
             {/* Search Bar */}
             <div className="relative w-1/3 hidden sm:flex">
@@ -28,8 +29,8 @@ export const SONavbar = () => {
                 </button>
                 {dropdownOpen && (
                     <div className="absolute right-0 mt-2 w-40 bg-gray-800 text-white rounded-md shadow-lg">
-                        <a href="/profile" className="block px-4 py-2 hover:bg-gray-700">Profile</a>
-                        <a href="/logout" className="block px-4 py-2 hover:bg-gray-700">Logout</a>
+                        <a href="/so-dashboard/profile" className="block px-4 py-2 hover:bg-gray-700">Profile</a>
+                        <a href="/authpage" className="block px-4 py-2 hover:bg-gray-700">Logout</a>
                     </div>
                 )}
             </div>

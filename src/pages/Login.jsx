@@ -27,7 +27,7 @@ export const Login = () => {
 
                 if (res.data.role === "customer") {
                     setTimeout(() => navigate("/user-dashboard"), 2000);
-                } else if (res.data.role === "salonOwner") {
+                } else if (res.data.role === "owner") {
                     setTimeout(() => navigate("/so-dashboard"), 2000);
                 } else if (res.data.role === "staff") {
                     setTimeout(() => navigate("/staff-dashboard"), 2000); //Added staff route
@@ -70,7 +70,7 @@ export const Login = () => {
                             })}
                             className="input-field"
                         />
-                        {errors[field] && <p className="error-message">{errors[field].message}</p>}
+                        {errors[field] && <p className="error-message-inline">{errors[field].message}</p>}
                     </div>
                 ))}
                 <button type="submit" className="submit-btn">Login</button>

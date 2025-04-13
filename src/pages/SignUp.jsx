@@ -19,8 +19,10 @@ export const SignUp = () => {
 
     const getAllRoles = async () => {
         try {
-            const res = await axios.get("http://localhost:3200/roles"); // Corrected URL
-            setRoles(res.data.data);
+            const res = await axios.get("http://localhost:3200/roles");
+            // Filter roles to include only "customer" and "owner"
+            const filteredRoles = res.data.data.filter(role => role.name === "customer" || role.name === "owner" || role.name === "staff");
+            setRoles(filteredRoles);
         } catch (error) {
             console.error("Error fetching roles:", error);
             toast.error("Failed to load roles");
@@ -33,11 +35,11 @@ export const SignUp = () => {
         console.log("Signup Data:", data);
         setLoading(true);
         try {
-            const res = await axios.post("http://localhost:3200/signup", data); // Corrected URL
+            const res = await axios.post("http://localhost:3200/signup", data);
             console.log("Signup Response:", res);
-            if (res.status === 201) { // Expecting 201 on successful creation
+            if (res.status === 201) {
                 notify("User registered successfully!");
-                setTimeout(() => navigate("/authpage"), 2000); // Redirect to login page
+                setTimeout(() => navigate("/authpage"), 2000);
             } else {
                 notify(`Failed to register user. Status: ${res.status}`, "error");
             }
@@ -85,21 +87,21 @@ export const SignUp = () => {
                             })}
                             className="input-field"
                         />
-                        {errors[field] && <p className="error-message">{errors[field].message}</p>}
+                        {errors[field] && <p className="error-message-inline">{errors[field].message}</p>}
                     </div>
                 ))}
 
                 <div className="input-group">
                     <label className="floating-label">Select Role</label>
                     <select className="input-field" {...register("roleId", { required: "Role is required" })}>
-                        <option className="bg-yellow-600"value="">SELECT ROLE</option>
+                        <option className="bg-yellow-600" value="">none</option>
                         {roles?.map((role) => (
                             <option key={role._id} value={role._id} className="option-dropdown-field">
                                 {role.name}
                             </option>
                         ))}
                     </select>
-                    {errors.roleId && <p className="error-message">{errors.roleId.message}</p>}
+                    {errors.roleId && <p className="error-message-inline">{errors.roleId.message}</p>}
                 </div>
 
                 <button type="submit" className="submit-btn">Sign Up</button>
@@ -107,3 +109,5 @@ export const SignUp = () => {
         </div>
     );
 };
+
+export default SignUp;

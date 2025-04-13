@@ -14,7 +14,7 @@ const MapComponent = ({ locationQuery }) => {
     const geocoderRef = useRef(null); //Added geocoderRef
 
     useEffect(() => {
-        const map = L.map('map').setView([0, 0], 2);
+        const map = L.map('map').setView([23.0225, 72.5714], 12);
         mapRef.current = map;
 
         L.tileLayer(

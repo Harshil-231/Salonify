@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
 const useAuth = () => {
@@ -10,8 +9,8 @@ const useAuth = () => {
         const id = localStorage.getItem("id");
         const role = localStorage.getItem("role");
 
-        if (id) {
-            setAuthState({ isLoggedin: true, role });
+        if (role) {
+            setAuthState({ isLoggedin: true, role: role });
         }
         setLoading(false);
     }, []);
@@ -19,15 +18,20 @@ const useAuth = () => {
     return { ...authState, loading };
 };
 
-export const PrivateRoute = () => {
+export const PrivateRoute = ({ allowedRoles }) => { // receive allowed roles as prop
     const auth = useAuth();
 
     if (auth.loading) {
         return <h1>Loading...</h1>; // Prevents redirection before auth state is set
     }
 
-    return auth.isLoggedin ? <Outlet /> : <Navigate to="/authpage" />;
+    if (!auth.isLoggedin) {
+        return <Navigate to="/authpage" />; // Redirect if not logged in
+    }
+
+    if (allowedRoles.includes(auth.role)) {
+        return <Outlet />; // Render Outlet if role is allowed
+    } else {
+        return <Navigate to="/authpage" />; // Redirect if role is not allowed
+    }
 };
-
-
-

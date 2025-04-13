@@ -1,55 +1,90 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaUser, FaSignOutAlt, FaBars, FaCalendarAlt, FaCut, FaUsers, FaWallet, FaStar, FaCog } from "react-icons/fa";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faCalendar,
+  faUsers,
+  faScissors,
+  faStar,
+  faWallet,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { X } from "lucide-react";
 
-export const SOSidebar = () => {
-  const [open, setOpen] = useState(true);
+export const SOSidebar = ({ isOpen, onClose }) => {
+  const location = useLocation();
+
+  const links = [
+    { to: "profile", icon: faUser, label: "Profile" },
+    { to: "appointments", icon: faCalendar, label: "Appointments" },
+    { to: "clients", icon: faUsers, label: "Clients" },
+    { to: "manage-salons", icon: faScissors, label: "Manage Salons" },
+    { to: "services", icon: faScissors, label: "Manage Services" },
+    { to: "manage-staff", icon: faUsers, label: "Manage Staff" },
+    { to: "reviews", icon: faStar, label: "Reviews & Ratings" },
+    { to: "payments", icon: faWallet, label: "Payments" },
+    { to: "logout", icon: faSignOutAlt, label: "Logout", isLogout: true },
+  ];
+
+  const isActive = (path) => location.pathname.includes(path);
 
   return (
     <>
-      {/* Sidebar Toggle Button */}
-      <button
-        className="fixed top-8 left-40 text-white p-2 rounded-md z-20"
-        onClick={() => setOpen(!open)}
-      >
-        <FaBars />
-      </button>
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+          onClick={onClose}
+        />
+      )}
 
-      {/* Sidebar (Fixed below the Navbar) */}
-      <div
-        className={`fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-gray-800 text-white transition-transform ${open ? "translate-x-0" : "-translate-x-64"
-          }`}
+      {/* Sidebar */}
+      <aside
+        className={`fixed top-20 left-0 h-full w-64 bg-noen z-40 transform transition-transform duration-200 ease-in-out ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0`}
       >
-        <ul className="mt-4">
-          <li className="p-4 hover:bg-gray-700 flex items-center text-white gap-2">
-            <FaUser /> <Link to="profile" className="hover:no-underline hover:text-white">Profile</Link> {/* Corrected Link */}
-          </li>
-          <li className="p-4 hover:bg-gray-700 flex items-center gap-2">
-            <FaCalendarAlt /> <Link to="/so-appointments" className="hover:no-underline hover:text-white" >Appointments</Link>
-          </li>
-          <li className="p-4 hover:bg-gray-700 flex items-center gap-2">
-            <FaUsers /> <Link to="/so-clients" className="hover:no-underline hover:text-white" >Clients</Link>
-          </li>
-          <li className="p-4 hover:bg-gray-700 flex items-center gap-2">
-            <FaCut /><Link to="/so-manage-services" className="hover:no-underline hover:text-white" >Manage Services</Link>
-          </li>
-          <li className="p-4 hover:bg-gray-700 flex items-center gap-2">
-            <FaUsers /> <Link to="/so-manage-staff" className="hover:no-underline hover:text-white" >Manage Staff</Link>
-          </li>
-          <li className="p-4 hover:bg-gray-700 flex items-center gap-2">
-            <FaStar /> <Link to="/so-reviews" className="hover:no-underline hover:text-white" >Reviews & Ratings</Link>
-          </li>
-          <li className="p-4 hover:bg-gray-700 flex items-center gap-2">
-            <FaWallet /> <Link to="/so-payments" className="hover:no-underline hover:text-white" >Payments</Link>
-          </li>
-          <li className="p-4 hover:bg-gray-700 flex items-center gap-2">
-            <FaCog /> <Link to="/so-settings" className="hover:no-underline hover:text-white" >Settings</Link>
-          </li>
-          <li className="p-4 hover:bg-red-700 flex items-center gap-2">
-            <FaSignOutAlt /> <Link to="/logout" className="hover:no-underline hover:text-white" >Logout</Link>
-          </li>
-        </ul>
-      </div>
+        {/* Mobile Close Button */}
+        <button
+          onClick={onClose}
+          className="md:hidden absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-lg"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {/* Sidebar Content */}
+        <div className=" pb-6">
+          <nav className="space-y-1 px-3">
+            {links.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                  isActive(link.to)
+                    ? "bg-purple-50 text-purple-600"
+                    : link.isLogout
+                    ? "text-red-500 hover:bg-red-50"
+                    : "text-gray-100 hover:bg-gray-50"
+                }`}
+                onClick={onClose}
+              >
+                <FontAwesomeIcon
+                  icon={link.icon}
+                  className={`w-5 h-5 ${
+                    isActive(link.to)
+                      ? "text-purple-600"
+                      : link.isLogout
+                      ? "text-red-500"
+                      : "text-gray-400"
+                  }`}
+                />
+                <span className="font-medium">{link.label}</span>
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </aside>
     </>
   );
 };

@@ -1,122 +1,132 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { Menu, ChevronDown, ChevronUp, Search } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faCalendar,
+  faWallet,
+  faHeart,
+  faFile,
+  faBox,
+  faCog,
+} from "@fortawesome/free-solid-svg-icons";
 
-export const UserHeader = () => {
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-    const dropdownRef = useRef(null);
+export const UserHeader = ({ onMenuClick }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-    const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setDropdownOpen(false);
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-    return (
-        <header className="fixed top-0 left-0 w-full bg-gray-900 shadow-md px-6 py-3 z-50">
-            {/* Header Container */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+  const sidebarLinks = [
+    { to: "profile", icon: faUser, label: "Profile" },
+    { to: "appointments", icon: faCalendar, label: "Appointments" },
+    { to: "wallet", icon: faWallet, label: "Wallet" },
+    { to: "favourites", icon: faHeart, label: "Favourites" },
+    { to: "forms", icon: faFile, label: "Forms" },
+    { to: "orders", icon: faBox, label: "Product Orders" },
+    { to: "settings", icon: faCog, label: "Settings" },
+  ];
 
-                {/* Logo & Mobile Profile */}
-                <div className="flex items-center justify-between w-full md:w-auto">
-                    {/* Logo */}
-                    <Link to="/" className="flex items-center">
-                        <img src="/images/Salonify.png" alt="logo" className="h-16 w-auto" />
-                    </Link>
+  return (
+    <header className="fixed top-0 left-0 right-0 bg-white border-b z-50">
+      <div className="px-4 h-[72px] flex items-center justify-between">
+        {/* Left Section */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={onMenuClick}
+            className="p-2 hover:bg-gray-100 rounded-lg md:hidden"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+          <Link to="/" className="flex items-center">
+            <img src="/images/Salonify.png" alt="logo" className="h-12 w-auto" />
+          </Link>
+        </div>
 
-                    {/* Profile Dropdown (Mobile) */}
-                    <div className="relative md:" ref={dropdownRef}>
-                        <div className="relative flex-shrink-0 md:hidden" ref={dropdownRef}>
-                            <div className="flex items-center gap-2 cursor-pointer" onClick={toggleDropdown}>
-                                <img
-                                    src="/images/chacha.jpg" // Your profile image
-                                    alt="User Profile"
-                                    className="w-10 h-10 rounded-full object-cover"
-                                />
-                                <button>
-                                    {dropdownOpen ? <FaChevronUp /> : <FaChevronDown />}
-                                </button>
-                            </div>
-                        </div>
+        {/* Search Bar - Hidden on mobile */}
+        <div className="hidden md:flex flex-1 max-w-2xl mx-4">
+          <div className="w-full flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg">
+            <Search className="w-5 h-5 text-gray-500" />
+            <input
+              type="text"
+              placeholder="Search treatments, locations, or dates..."
+              className="w-full bg-transparent focus:outline-none text-sm"
+            />
+          </div>
+        </div>
 
-                        {dropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-56 bg-blue-800 border rounded-lg shadow-lg p-2 z-50 flex flex-col">
-                                <div className="px-3 py-2 font-semibold">Harshil Panchal</div>
-                                <Link to="/user-profile">Profile</Link>
-                                <Link to="/user-appointments">Appointments</Link>
-                                <Link to="/wallet">Wallet</Link>
-                                <Link to="/favourites">Favourites</Link>
-                                <Link to="/forms">Forms</Link>
-                                <Link to="/product-orders">Product orders</Link>
-                                <Link to="/settings">Settings</Link>
-                                <Link to="/logout">Log out</Link>
-                                <hr className="my-2" />
-                                <div className="px-3 py-2 font-semibold">Other</div>
-                                <Link to="/businesses">For businesses</Link>
-                                <Link to="/download-app">Download the app</Link>
-                                <Link to="/customer-support">Customer support</Link>
-                                <Link to="/english">GB English</Link>
-                            </div>
-                        )}
-                    </div>
-                </div>
+        {/* Profile Dropdown */}
+        <div className="relative" ref={dropdownRef}>
+          <button
+            onClick={toggleDropdown}
+            className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-lg"
+          >
+            <img
+              src="/images/suit.jpg"
+              alt="Profile"
+              className="w-8 h-8 rounded-full object-cover"
+            />
+            {dropdownOpen ? (
+              <ChevronUp className="w-4 h-4" />
+            ) : (
+              <ChevronDown className="w-4 h-4" />
+            )}
+          </button>
 
-                {/* Search Bar */}
-                <div className="w-full flex justify-center">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 bg-gray-100 p-2 rounded-lg shadow-sm w-full max-w-2xl">
-                        <input type="text" placeholder="All treatments" />
-                        <input type="text" placeholder="Current location" />
-                        <input type="text" placeholder="Any date" />
-                        <input type="text" placeholder="Any time" />
-                    </div>
-                </div>
-
-                {/* Profile Dropdown (Desktop) */}
-                <div className="hidden md:flex relative" ref={dropdownRef}>
-                    <div className="flex items-center gap-2 cursor-pointer" onClick={toggleDropdown}>
-                        <div className="relative flex-shrink-0 md:hidden" ref={dropdownRef}>
-                            <div className="flex items-center gap-2 cursor-pointer" onClick={toggleDropdown}>
-                                <img
-                                    src="/images/suit.jpg" // Your profile image
-                                    alt="User Profile"
-                                    className="w-10 h-10 rounded-full object-cover"
-                                />
-                                <button>
-                                    {dropdownOpen ? <FaChevronUp /> : <FaChevronDown />}
-                                </button>
-                            </div>
-                        </div> {/* User Icon Placeholder */}
-                        <button>{dropdownOpen ? <FaChevronUp /> : <FaChevronDown />}</button>
-                    </div>
-
-                    {dropdownOpen && (
-                        <div className="absolute right-0 mt-7 w-56 bg-blue-800 border rounded-lg shadow-lg p-2 z-50">
-                            <div className="px-3 py-2 font-semibold">Harshil Panchal</div>
-                            <Link to="profile">Profile</Link>
-                            <Link to="appointments">Appointments</Link>
-                            <Link to="wallet">Wallet</Link>
-                            <Link to="favourites">Favourites</Link>
-                            <Link to="forms">Forms</Link>
-                            <Link to="product-orders">Product orders</Link>
-                            <Link to="settings">Settings</Link>
-                            <Link to="logout">Log out</Link>
-                            <hr className="my-2" />
-                            <div className="px-3 py-2 font-semibold">Other</div>
-                            <Link to="/businesses">For businesses</Link>
-                            <Link to="/download-app">Download the app</Link>
-                            <Link to="/customer-support">Customer support</Link>
-                            <Link to="/english">GB English</Link>
-                        </div>
-                    )}
-                </div>
-
+          {dropdownOpen && (
+            <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border overflow-hidden">
+              <div className="p-3 border-b">
+                <p className="font-medium">Harshil Panchal</p>
+                <p className="text-sm text-gray-500">user@example.com</p>
+              </div>
+              <nav className="py-2">
+                {sidebarLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 text-gray-700"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    <FontAwesomeIcon icon={link.icon} className="w-4 h-4" />
+                    <span>{link.label}</span>
+                  </Link>
+                ))}
+              </nav>
+              <div className="border-t p-3">
+                <Link
+                  to="/pricing"
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                >
+                  For businesses
+                </Link>
+              </div>
             </div>
-        </header>
-    );
+          )}
+        </div>
+      </div>
+
+      {/* Mobile Search Bar */}
+      <div className="md:hidden px-4 pb-3">
+        <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg">
+          <Search className="w-5 h-5 text-gray-500" />
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-full bg-transparent focus:outline-none text-sm"
+          />
+        </div>
+      </div>
+    </header>
+  );
 };
