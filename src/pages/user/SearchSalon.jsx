@@ -57,11 +57,11 @@ export const SearchSalon = () => {
             <UserHeader/>
             {/* Left Side - List + Filter */}
             {/* Left Side - List + Filter */}
-            <div className="w-1/3 h-full bg-gray-50 border-r border-gray-200 flex flex-col">
+            <div className="w-1/3 h-full bg-gray-150 border-r border-gray-200 flex flex-col">
                 {/* Fixed Header */}
-                <div className="sticky top-0 bg-gray-50 z-10 p-4 border-b border-gray-200">
+                <div className="sticky top-0 bg-gray- z-10 p-4 border-b border-gray-200">
                     <div className="flex justify-between items-center">
-                        <h2 className="text-xl font-semibold text-gray-700">All Salons</h2>
+                        <h2 className="text-xl font-semibold text-gray-100">All Salons</h2>
                         <button
                             onClick={() => setShowFilter(true)}
                             className="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
@@ -77,7 +77,7 @@ export const SearchSalon = () => {
                         {filteredSalons.map((salon) => (
                             <li
                                 key={salon._id}
-                                className="bg-white p-4 rounded shadow-sm cursor-pointer hover:bg-gray-100"
+                                className="bg-white  p-4 rounded shadow-sm cursor-pointer hover:bg-gray-100"
                                 onClick={() => window.open(`/salon/${salon._id}`, "_blank")}
                             >
                                 <p className="font-medium text-gray-800">Name: {salon.salonName}</p>

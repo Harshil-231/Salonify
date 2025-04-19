@@ -261,8 +261,8 @@ const SelectServicesPage = () => {
                                     onChange={handleDateChange}
                                     value={selectedDate}
                                     minDate={new Date()}
-                                    className="rounded-lg shadow-md border-none"
-                                    tileClassName="text-gray-700"
+                                    className="rounded-lg  text-gray-950 shadow-md border-none"
+                                    tileClassName="text-gray-900 shadow-md"
                                     nextLabel={<span style={{ color: '#1e3a8a' }}>&gt;</span>}
                                     prevLabel={<span style={{ color: '#1e3a8a' }}>&lt;</span>}
                                     next2Label={<span style={{ color: '#1e3a8a' }}>&gt;&gt;</span>}

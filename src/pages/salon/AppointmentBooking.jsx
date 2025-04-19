@@ -74,7 +74,7 @@ const AppointmentBooking = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 py-6 flex items-center justify-center">
+        <div className="min-h-screen bg-gray-900 py-6 flex items-center justify-center">
             <div className="bg-white shadow overflow-hidden rounded-lg max-w-3xl w-full">
                 <div className="px-4 py-5 sm:px-6">
                     <h1 className="text-2xl font-semibold text-gray-900 text-center">Your Appointments</h1>

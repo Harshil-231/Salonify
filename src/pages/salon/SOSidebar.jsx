@@ -18,12 +18,12 @@ export const SOSidebar = ({ isOpen, onClose }) => {
   const links = [
     { to: "profile", icon: faUser, label: "Profile" },
     { to: "appointments", icon: faCalendar, label: "Appointments" },
-    { to: "clients", icon: faUsers, label: "Clients" },
+    // { to: "clients", icon: faUsers, label: "Clients" },
     { to: "manage-salons", icon: faScissors, label: "Manage Salons" },
     { to: "manage-services", icon: faScissors, label: "Manage Services" },
     { to: "manage-staff", icon: faUsers, label: "Manage Staff" },
-    { to: "reviews", icon: faStar, label: "Reviews & Ratings" },
-    { to: "payments", icon: faWallet, label: "Payments" },
+    // { to: "reviews", icon: faStar, label: "Reviews & Ratings" },
+    // { to: "payments", icon: faWallet, label: "Payments" },
     { to: "/authpage", icon: faSignOutAlt, label: "Logout", isLogout: true },
   ];
 

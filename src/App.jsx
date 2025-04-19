@@ -9,13 +9,13 @@ import { Features } from './pages/Features';
 import { Pricing } from './pages/Pricing';
 import { PrivateRoute } from './Components/PrivateRoute';
 
-import  AdminDashboard  from './pages/admin/AdminDashboard';
+import AdminDashboard from './pages/admin/AdminDashboard';
 import { SODashboard } from './pages/salon/SODashboard';
 import { UserDashboard } from './pages/user/UserDashboard';
 
 import { UserProfile } from './pages/user/UserProfile';
 import { EditUserProfile } from './pages/user/EditUserProfile';
-import  BookAppointments  from './pages/user/BookAppointments';
+import BookAppointments from './pages/user/BookAppointments';
 
 
 import { Navbar } from './Components/Common/Navbar';
@@ -35,7 +35,7 @@ import SelectServicesPage from './pages/salon/SelectServicesPage';
 import ManageSalons from './pages/salon/ManageSalons';
 import ManageServices from './pages/salon/ManageServices';
 import { ManageStaff } from './pages/salon/ManageStaff';
-import  AppointmentBooking  from './pages/salon/AppointmentBooking';
+import AppointmentBooking from './pages/salon/AppointmentBooking';
 
 const GOOGLE_CLIENT_ID = '616976635256-6dbof6or41jhmvp75blc9cgbv4okdidn.apps.googleusercontent.com';
 
@@ -67,39 +67,39 @@ function App() {
 
                 {/* Admin Routes (Full Access) */}
 
-                {/* <Route element={<PrivateRoute allowedRoles={['admin']} />}> */}
+                <Route element={<PrivateRoute allowedRoles={['admin']} />}>
                     <Route path="/admin-dashboard" element={<AdminDashboard />} />
-                {/* </Route> */}
+                </Route>
 
                 {/* User-Only Routes */}
 
-                {/* <Route element={<PrivateRoute allowedRoles={['customer']} />}> */}
-                <Route path="/user-dashboard" element={<UserDashboard />} >
-                    <Route path="profile" element={<UserProfile />} />
-                    <Route path="profile-edit" element={<EditUserProfile />} />
-                    <Route path="appointments" element={<BookAppointments />} />
-                    <Route path="wallet" element={<BookAppointments />} />
-                    <Route path="favourites" element={<BookAppointments />} />
-                    <Route path="orders" element={<BookAppointments />} />
-                    <Route path="settings" element={<BookAppointments />} />
+                <Route element={<PrivateRoute allowedRoles={['customer']} />}>
+                    <Route path="/user-dashboard" element={<UserDashboard />} >
+                        <Route path="profile" element={<UserProfile />} />
+                        <Route path="profile-edit" element={<EditUserProfile />} />
+                        <Route path="appointments" element={<BookAppointments />} />
+                        <Route path="wallet" element={<BookAppointments />} />
+                        <Route path="favourites" element={<BookAppointments />} />
+                        <Route path="orders" element={<BookAppointments />} />
+                        <Route path="settings" element={<BookAppointments />} />
+                    </Route>
                 </Route>
-                {/* </Route> */}
 
                 {/* Salon Owner Routes */}
 
-                {/* <Route element={<PrivateRoute allowedRoles={['owner']} />}> */}
-                <Route path="/so-dashboard" element={<SODashboard />} >
-                    <Route path="profile-edit" element={<EditOwnerProfile />} />
-                    <Route path="profile" element={<SOProfile />} />
-                    <Route path="manage-Salons" element={<ManageSalons />} />
-                    <Route path="manage-services" element={<ManageServices />} />
-                    {/* <Route path="clients" element={<AddSalonForm />} /> */}
-                    {/* <Route path="services" element={<AddSalonForm />} /> */}
-                    <Route path="manage-staff" element={<ManageStaff />} />
-                    <Route path="appointments" element={<AppointmentBooking />} />
-                    {/* <Route path="payments" element={</>} /> */}
+                <Route element={<PrivateRoute allowedRoles={['owner']} />}>
+                    <Route path="/so-dashboard" element={<SODashboard />} >
+                        <Route path="profile-edit" element={<EditOwnerProfile />} />
+                        <Route path="profile" element={<SOProfile />} />
+                        <Route path="manage-Salons" element={<ManageSalons />} />
+                        <Route path="manage-services" element={<ManageServices />} />
+                        {/* <Route path="clients" element={<AddSalonForm />} /> */}
+                        {/* <Route path="services" element={<AddSalonForm />} /> */}
+                        <Route path="manage-staff" element={<ManageStaff />} />
+                        <Route path="appointments" element={<AppointmentBooking />} />
+                        {/* <Route path="payments" element={</>} /> */}
+                    </Route>
                 </Route>
-                {/* </Route> */}
 
                 {/* <Route path="/trial" element={<Trial />} /> */}
             </Routes>
