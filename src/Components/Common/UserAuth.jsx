@@ -26,16 +26,16 @@ const UserAuth = ({ onLogout }) => {
         if (user && user.role) {
             switch (user.role) {
                 case 'customer':
-                    navigate('/user-dashboard');
+                    navigate('/user-dashboard/profile');
                     break;
                 case 'owner':
-                    navigate('/so-dashboard');
+                    navigate('/so-dashboard/profile');
                     break;
                 // case 'staff':
                 //     navigate('/staff-dashboard');
                 //     break;
                 case 'admin':
-                    navigate('/');
+                    navigate('/admin-dashboard');
                     break;
                 default:
                     console.warn('Unknown role:', user.role);

@@ -26,9 +26,9 @@ export const Login = () => {
                 localStorage.setItem("token", res.data.token); // Store the role name
 
                 if (res.data.role === "customer") {
-                    setTimeout(() => navigate("/user-dashboard"), 2000);
+                    setTimeout(() => navigate("/user-dashboard/profile"), 2000);
                 } else if (res.data.role === "owner") {
-                    setTimeout(() => navigate("/so-dashboard"), 2000);
+                    setTimeout(() => navigate("/so-dashboard/profile"), 2000);
                 } else if (res.data.role === "staff") {
                     setTimeout(() => navigate("/staff-dashboard"), 2000); //Added staff route
                 } else if (res.data.role === "admin") {

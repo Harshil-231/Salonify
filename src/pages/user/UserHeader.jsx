@@ -31,11 +31,11 @@ export const UserHeader = ({ onMenuClick }) => {
   const sidebarLinks = [
     { to: "profile", icon: faUser, label: "Profile" },
     { to: "appointments", icon: faCalendar, label: "Appointments" },
-    { to: "wallet", icon: faWallet, label: "Wallet" },
-    { to: "favourites", icon: faHeart, label: "Favourites" },
-    { to: "forms", icon: faFile, label: "Forms" },
-    { to: "orders", icon: faBox, label: "Product Orders" },
-    { to: "settings", icon: faCog, label: "Settings" },
+    // { to: "wallet", icon: faWallet, label: "Wallet" },
+    // { to: "favourites", icon: faHeart, label: "Favourites" },
+    // { to: "forms", icon: faFile, label: "Forms" },
+    // { to: "orders", icon: faBox, label: "Product Orders" },
+    // { to: "settings", icon: faCog, label: "Settings" },
   ];
 
   return (
@@ -55,7 +55,7 @@ export const UserHeader = ({ onMenuClick }) => {
         </div>
 
         {/* Search Bar - Hidden on mobile */}
-        <div className="hidden md:flex flex-1 max-w-2xl mx-4">
+        {/* <div className="hidden md:flex flex-1 max-w-2xl mx-4">
           <div className="w-full flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg">
             <Search className="w-5 h-5 text-gray-500" />
             <input
@@ -64,7 +64,7 @@ export const UserHeader = ({ onMenuClick }) => {
               className="w-full bg-transparent focus:outline-none text-sm"
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Profile Dropdown */}
         <div className="relative" ref={dropdownRef}>

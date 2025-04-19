@@ -36,7 +36,7 @@ export const UserProfile = () => {
         fetchCustomer();
     }, [userId]);
 
-    
+
     const handleImageUpload = async (event) => {
         const file = event.target.files[0];
         if (!file) return;
@@ -50,8 +50,7 @@ export const UserProfile = () => {
         setUploading(true);
         setPreview(URL.createObjectURL(file));
         const formData = new FormData();  // <---- Add this line
-    formData.append("profilePicture", file); // <---- Add this line
-
+        formData.append("profilePicture", file); // <---- Add this line
 
         try {
             const token = localStorage.getItem("token");
@@ -71,7 +70,7 @@ export const UserProfile = () => {
                 profilePicture: res.data.data.profilePicture,
             }));
             setPreview(res.data.data.profilePicture);
-       
+
         } catch (error) {
             alert("Image upload failed. Try again.");
             console.error("Error uploading image:", error);
@@ -119,7 +118,7 @@ export const UserProfile = () => {
                     <div className="relative -mt-16 px-6">
                         <div className="relative inline-block">
                             <img
-                                src={preview || userData?.profilePicture|| "/images/default1.png"}
+                                src={preview || userData?.profilePicture || "/images/default1.png"}
                                 className="w-32 h-32 rounded-full border-4 border-white object-cover shadow"
                                 alt="Customer"
                             />

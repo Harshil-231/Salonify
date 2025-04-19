@@ -1,3 +1,5 @@
+// In SignUp.js
+
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +8,7 @@ import { Bounce, toast, ToastContainer } from "react-toastify";
 import { Loader } from "../Components/Common/Loader.jsx";
 import "../Styles/LoginSignUp.css";
 
-export const SignUp = () => {
+export const SignUp = ({ onSignupSuccess }) => { 
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [loading, setLoading] = useState(true);
@@ -20,8 +22,8 @@ export const SignUp = () => {
     const getAllRoles = async () => {
         try {
             const res = await axios.get("http://localhost:3200/roles");
-            // Filter roles to include only "customer" and "owner"
-            const filteredRoles = res.data.data.filter(role => role.name === "customer" || role.name === "owner" || role.name === "staff");
+
+            const filteredRoles = res.data.data.filter(role => role.name === "admin" || role.name === "customer" || role.name === "owner" || role.name === "staff");
             setRoles(filteredRoles);
         } catch (error) {
             console.error("Error fetching roles:", error);
@@ -39,7 +41,8 @@ export const SignUp = () => {
             console.log("Signup Response:", res);
             if (res.status === 201) {
                 notify("User registered successfully!");
-                setTimeout(() => navigate("/authpage"), 2000);
+                // Call the onSignupSuccess prop to signal AuthPage to show login
+                onSignupSuccess(); // Call the function
             } else {
                 notify(`Failed to register user. Status: ${res.status}`, "error");
             }
@@ -58,7 +61,7 @@ export const SignUp = () => {
     return (
         <div className="signup-container">
             {loading && <Loader />}
-            <ToastContainer position="top-center" autoClose={2000} theme="dark" transition={Bounce} />
+            {/* <ToastContainer position="top-center" autoClose={2000} theme="dark" transition={Bounce} /> */}
             <h2 className="signup-title">Sign Up</h2>
 
             <form onSubmit={handleSubmit(submitHandler)} className="signup-form">

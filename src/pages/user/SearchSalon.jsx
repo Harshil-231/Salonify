@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import MapComponent from '../../Components/MapComponent';
+import { UserHeader } from "./UserHeader";
 
 export const SearchSalon = () => {
     const navigate = useNavigate();
@@ -53,6 +54,7 @@ export const SearchSalon = () => {
 
     return (
         <div className="pt-[70px] h-[calc(100vh-0px)] flex">
+            <UserHeader/>
             {/* Left Side - List + Filter */}
             {/* Left Side - List + Filter */}
             <div className="w-1/3 h-full bg-gray-50 border-r border-gray-200 flex flex-col">
@@ -80,7 +82,7 @@ export const SearchSalon = () => {
                             >
                                 <p className="font-medium text-gray-800">Name: {salon.salonName}</p>
                                 <p className="text-gray-600">Phone: {salon.phone}</p>
-                                <p className="text-gray-600">Email: {salon.email}</p>
+                                <p className="text-gray-600">Address: {salon.state}</p>
                             </li>
                         ))}
                     </ul>

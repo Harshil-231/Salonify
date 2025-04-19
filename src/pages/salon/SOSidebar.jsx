@@ -20,11 +20,11 @@ export const SOSidebar = ({ isOpen, onClose }) => {
     { to: "appointments", icon: faCalendar, label: "Appointments" },
     { to: "clients", icon: faUsers, label: "Clients" },
     { to: "manage-salons", icon: faScissors, label: "Manage Salons" },
-    { to: "services", icon: faScissors, label: "Manage Services" },
+    { to: "manage-services", icon: faScissors, label: "Manage Services" },
     { to: "manage-staff", icon: faUsers, label: "Manage Staff" },
     { to: "reviews", icon: faStar, label: "Reviews & Ratings" },
     { to: "payments", icon: faWallet, label: "Payments" },
-    { to: "logout", icon: faSignOutAlt, label: "Logout", isLogout: true },
+    { to: "/authpage", icon: faSignOutAlt, label: "Logout", isLogout: true },
   ];
 
   const isActive = (path) => location.pathname.includes(path);

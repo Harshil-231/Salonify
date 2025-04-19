@@ -18,11 +18,11 @@ export const UserSidebar = ({ isOpen, onClose }) => {
   const links = [
     { to: "profile", icon: faUser, label: "Profile" },
     { to: "appointments", icon: faCalendar, label: "Appointments" },
-    { to: "wallet", icon: faWallet, label: "Wallet" },
-    { to: "favourites", icon: faHeart, label: "Favourites" },
-    { to: "forms", icon: faFile, label: "Forms" },
-    { to: "orders", icon: faBox, label: "Product Orders" },
-    { to: "settings", icon: faCog, label: "Settings" },
+    // { to: "wallet", icon: faWallet, label: "Wallet" },
+    // { to: "favourites", icon: faHeart, label: "Favourites" },
+    // { to: "forms", icon: faFile, label: "Forms" },
+    // { to: "orders", icon: faBox, label: "Product Orders" },
+    // { to: "settings", icon: faCog, label: "Settings" },
   ];
 
   const isActive = (path) => location.pathname.includes(path);

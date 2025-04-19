@@ -99,9 +99,7 @@ export const HomePage = () => {
                         <img src="/images/dress.jpg" alt="Client 2" />
                         <img src="/images/suit.jpg" alt="Client 3" />
                         <img src="/images/CLIENT4.jpg" alt="Client 4" />
-                        <img src="/images/CLIENT4.jpg" alt="Client 4" />
-                        <img src="/images/CLIENT4.jpg" alt="Client 4" />
-                        <img src="/images/CLIENT4.jpg" alt="Client 4" />
+                        
                     </div>
                 </section>
 
